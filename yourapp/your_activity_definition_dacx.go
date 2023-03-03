@@ -96,8 +96,8 @@ func (a *YourActivityObject) PrintSharedSate(ctx context.Context) error {
 /* @dac
 id: how-to-develop-an-activity-definition-in-go
 title: How to develop an Activity Definition in Go
-description: In the Temporal Go SDK programming model, an Activity Definition is an exportable function or a `struct` method.
 label: Activity Definition
+description: In the Temporal Go SDK programming model, an Activity Definition is an exportable function or a `struct` method.
 lines: 1-8, 37-60, 74-86
 @dac */
 
@@ -112,7 +112,7 @@ lines: 9-22, 60, 74
 /* @dac
 id: how-to-define-activity-return-values-in-go
 title: How to define Activity return values in Go
-sidebar_label: Activity return values
+label: Activity return values
 description: A Go-based Activity Definition can return either just an `error` or a `customValue, error` combination.
 lines: 24-35, 60, 67-74
 @dac */
