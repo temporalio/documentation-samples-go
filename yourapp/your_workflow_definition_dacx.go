@@ -139,7 +139,7 @@ id: how-to-define-workflow-return-values-in-go
 title: How to define Workflow return values in Go
 label: Workflow return values
 description: A Go-based Workflow Definition can return either just an `error` or a `customValue, error` combination.
-lines: 1-7, 31-40, 83-96
+lines: 1-7, 31-40, 53-54, 83-96
 @dac */
 
 /*dac
