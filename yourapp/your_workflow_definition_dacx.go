@@ -131,7 +131,7 @@ id: how-to-define-workflow-parameters-in-go
 title: How to define Workflow parameters in Go
 label: Workflow parameters
 description: A Go-based Workflow Definition must accept workflow.Context and may support multiple custom parameters.
-lines:  1-27, 47-48, 83
+lines:  1-27, 53-54, 83
 @dac */
 
 /* @dac
