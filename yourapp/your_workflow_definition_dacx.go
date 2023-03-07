@@ -6,7 +6,8 @@ import (
 	"go.temporal.io/sdk/workflow"
 )
 
-/* The first parameter of a Go-based Workflow Definition must be of the [`workflow.Context`](https://pkg.go.dev/go.temporal.io/sdk/workflow#Context) type.
+/*
+The first parameter of a Go-based Workflow Definition must be of the [`workflow.Context`](https://pkg.go.dev/go.temporal.io/sdk/workflow#Context) type.
 It is used by the Temporal Go SDK to pass around Workflow Execution context, and virtually all the Go SDK APIs that are callable from the Workflow require it.
 It is acquired from the [`go.temporal.io/sdk/workflow`](https://pkg.go.dev/go.temporal.io/sdk/workflow) package.
 
@@ -18,7 +19,8 @@ A Workflow Definition may support multiple custom parameters, or none.
 These parameters can be regular type variables or safe pointers.
 However, the best practice is to pass a single parameter that is of a `struct` type, so there can be some backward compatibility if new parameters are added.
 
-All Workflow Definition parameters must be serializable and can't be channels, functions, variadic, or unsafe pointers. */
+All Workflow Definition parameters must be serializable and can't be channels, functions, variadic, or unsafe pointers.
+*/
 
 // YourWorkflowParam is the object passed to the Workflow.
 type YourWorkflowParam struct {
@@ -26,8 +28,10 @@ type YourWorkflowParam struct {
 	WorkflowParamY int
 }
 
-/* A Go-based Workflow Definition can return either just an `error` or a `customValue, error` combination.
-Again, the best practice here is to use a `struct` type to hold all custom values. */
+/*
+A Go-based Workflow Definition can return either just an `error` or a `customValue, error` combination.
+Again, the best practice here is to use a `struct` type to hold all custom values.
+*/
 
 // YourWorkflowResultObject is the object returned by the Workflow.
 type YourWorkflowResultObject struct {
@@ -35,8 +39,10 @@ type YourWorkflowResultObject struct {
 	WFResultFieldY int
 }
 
-/* In the Temporal Go SDK programming model, a [Workflow Definition](/concepts/what-is-a-workflow-definition) is an exportable function.
-Below is an example of a basic Workflow Definition */
+/*
+In the Temporal Go SDK programming model, a [Workflow Definition](/concepts/what-is-a-workflow-definition) is an exportable function.
+Below is an example of a basic Workflow Definition. 
+*/
 
 // YourSimpleWorkflowDefintiion is the most basic Workflow Defintion.
 func YourSimpleWorkflowDefinition(ctx workflow.Context) error {
@@ -82,12 +88,15 @@ func YourWorkflowDefinition(ctx workflow.Context, param YourWorkflowParam) (*You
 	return workflowResult, nil
 }
 
-/* A Workflow Definition written in Go can return both a custom value and an error.
+/*
+A Workflow Definition written in Go can return both a custom value and an error.
 However, it's not possible to receive both a custom value and an error in the calling process, as is normal in Go.
 The caller will receive either one or the other.
-Returning a non-nil `error` from a Workflow indicates that an error was encountered during its execution and the Workflow Execution should be terminated, and any custom return values will be ignored by the system. */
+Returning a non-nil `error` from a Workflow indicates that an error was encountered during its execution and the Workflow Execution should be terminated, and any custom return values will be ignored by the system.
+*/
 
-/* In Go, Workflow Definition code cannot directly do the following:
+/*
+In Go, Workflow Definition code cannot directly do the following:
 
 - Iterate over maps using `range`, because with `range` the order of the map's iteration is randomized.
   Instead you can collect the keys of the map, sort them, and then iterate over the sorted keys to access the map.
@@ -106,7 +115,8 @@ The Temporal Go SDK has APIs to handle equivalent Go constructs:
 - `workflow.Selector` This is a replacement for the `select` statement.
   Learn more on the [Go SDK Selectors](https://legacy-documentation-sdks.temporal.io/go/selectors) page.
 - `workflow.Context` This is a replacement for `context.Context`.
-  See [Tracing](/app-dev-context/tracing) for more information about context propagation.*/
+  See [Tracing](/app-dev-context/tracing) for more information about context propagation.
+*/
 
 /* @dac
 id: how-to-develop-a-workflow-definition-in-go
