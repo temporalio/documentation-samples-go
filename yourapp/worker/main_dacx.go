@@ -76,7 +76,7 @@ If you have [`gow`](https://github.com/mitranim/gow) installed, the Worker Proce
 
 ```bash
 go install github.com/mitranim/gow@latest
-gow run worker/main.go # automatically reload when file changed
+gow run worker/main.go # automatically reloads when file changes
 ```
 */
 

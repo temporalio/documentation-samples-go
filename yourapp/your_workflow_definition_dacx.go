@@ -41,7 +41,7 @@ type YourWorkflowResultObject struct {
 
 /*
 In the Temporal Go SDK programming model, a [Workflow Definition](/concepts/what-is-a-workflow-definition) is an exportable function.
-Below is an example of a basic Workflow Definition. 
+Below is an example of a basic Workflow Definition.
 */
 
 // YourSimpleWorkflowDefintiion is the most basic Workflow Defintion.
