@@ -99,5 +99,5 @@ id: how-to-customize-workflow-type-in-go
 title: How to customize Workflow Type in Go
 label: Customize Workflow Type
 description: To customize the Workflow Type set the Name parameter with RegisterOptions when registering your Workflow with a Worker.
-lines: 28, 37, 41-45, 66-66
+lines: 1-12, 28, 37, 41-45, 66-66
 @dac */
