@@ -72,12 +72,18 @@ To customize the Workflow Type, set the `Name` parameter with `RegisterOptions` 
 */
 
 /*
+
+:::tip
+
 If you have [`gow`](https://github.com/mitranim/gow) installed, the Worker Process automatically "reloads" when you update the Worker file:
 
 ```bash
 go install github.com/mitranim/gow@latest
 gow run worker/main.go # automatically reloads when file changes
 ```
+
+:::
+
 */
 
 /* @dac
@@ -85,7 +91,7 @@ id: how-to-develop-a-worker-in-go
 title: How to develop a Worker in Go
 label: Develop Worker
 description: Develop an instance of a Worker by calling worker.New(), available via the go.temporal.io/sdk/worker package.
-lines: 1-40, 46-55, 61-66, 74-81
+lines: 1-40, 46-55, 61-66, 74-87
 @dac */
 
 /* @dac
