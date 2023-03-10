@@ -65,18 +65,24 @@ func YourWorkflowDefinition(ctx workflow.Context, param YourWorkflowParam) (*You
 	}
 	// Use a nil struct pointer to call Activities that are part of a struct.
 	var a *YourActivityObject
-	err := workflow.ExecuteActivity(ctx, a.PrintSharedSate).Get(ctx, nil)
-	if err != nil {
-		return nil, err
-	}
 	// Execute the Activity and wait for the result.
-	var activityResult YourActivityResultObject
-	err = workflow.ExecuteActivity(ctx, a.YourActivityDefinition, activityParam).Get(ctx, &activityResult)
+	var activityResult *YourActivityResultObject
+	err := workflow.ExecuteActivity(ctx, a.YourActivityDefinition, activityParam).Get(ctx, &activityResult)
 	if err != nil {
 		return nil, err
 	}
-	// Execute another Activity and wait for the result.
-	err = workflow.ExecuteActivity(ctx, a.PrintSharedSate).Get(ctx, nil)
+	// Execute another Activity that doesn't take params and wait for the result.
+	var infoResult *YourActivityResultObject
+	err = workflow.ExecuteActivity(ctx, a.GetInfo).Get(ctx, &infoResult)
+	if err != nil {
+		return nil, err
+	}
+	// Execute another Activity that takes params, but doesn't return data.
+	infoParam := YourActivityParam{
+		ActivityParamX: infoResult.ResultFieldX,
+		ActivityParamY: infoResult.ResultFieldY,
+	}
+	err = workflow.ExecuteActivity(ctx, a.PrintInfo, infoParam).Get(ctx, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -131,7 +137,7 @@ id: how-to-define-workflow-parameters-in-go
 title: How to define Workflow parameters in Go
 label: Workflow parameters
 description: A Go-based Workflow Definition must accept workflow.Context and may support multiple custom parameters.
-lines:  1-29, 53-54, 89
+lines:  1-29, 53-54, 95
 @dacx */
 
 /* @dacx
@@ -139,7 +145,7 @@ id: how-to-define-workflow-return-values-in-go
 title: How to define Workflow return values in Go
 label: Workflow return values
 description: A Go-based Workflow Definition can return either just an `error` or a `customValue, error` combination.
-lines: 1-7, 31-40, 53-54, 83-96
+lines: 1-7, 31-40, 53-54, 86-102
 @dacx */
 
 /*dac
@@ -147,5 +153,5 @@ id: how-to-handle-workflow-logic-requirements-in-go
 title: How to handle Workflow logic requirements in Go
 label: Workflow logic requirements
 description: In Go, Workflow Definition code cannot directly do a few things to adhere to deterministic constraints.
-lnes: 98-119
+lnes: 104-125
 @dacx */

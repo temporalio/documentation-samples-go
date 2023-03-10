@@ -47,22 +47,22 @@ func YourSimpleActivityDefinition(ctx context.Context) error {
 // YourActivityObject is the struct that maintains shared state across Activities.
 // If the Worker crashes this Activity object loses its state.
 type YourActivityObject struct {
-	SharedMessageState *string
-	SharedCounterState *int
+	Message *string
+	Number *int
 }
 
 // YourActivityDefinition is your custom Activity Definition.
 // An Activity Definiton is an exportable function.
-func (a *YourActivityObject) YourActivityDefinition(ctx context.Context, param YourActivityParam) (YourActivityResultObject, error) {
-	// Use Acivities for computations or calling external APIs.
-	// This is just an example of appending to text and incrementing a counter.
-	message := param.ActivityParamX + " World!"
-	counter := param.ActivityParamY + 1
-	a.SharedMessageState = &message
-	a.SharedCounterState = &counter
-	result := YourActivityResultObject{
-		ResultFieldX: *a.SharedMessageState,
-		ResultFieldY: *a.SharedCounterState,
+func (a *YourActivityObject) YourActivityDefinition(ctx context.Context, param YourActivityParam) (*YourActivityResultObject, error) {
+	// Use Acivities for calling external APIs.
+	// This is just an example of using the logger to print "Hello World!"
+	logger := activity.GetLogger(ctx)
+	logger.Info("The message is:", param.ActivityParamX)
+	logger.Info("The number is:", param.ActivityParamY)
+	// Return data using a Struct so that the function signature is backward compatible.
+	result := &YourActivityResultObject{
+		ResultFieldX: "Success",
+		ResultFieldY: 1,
 	}
 	// Return the results back to the Workflow Execution.
 	// The results persist within the Event History of the Workflow Execution.
@@ -81,12 +81,20 @@ Activities written as struct methods can use shared struct variables, such as:
 Because this is such a common need, the rest of this guide shows Activities written as `struct` methods.
 */
 
-// PrintSharedState is another custom Activity Definition.
-func (a *YourActivityObject) PrintSharedSate(ctx context.Context) error {
+// PrintInfo is another custom Activity Definition.
+func (a *YourActivityObject) PrintInfo(ctx context.Context, param YourActivityParam) error {
 	logger := activity.GetLogger(ctx)
-	logger.Info("The current message is:", *a.SharedMessageState)
-	logger.Info("The current counter is:", *a.SharedCounterState)
+	logger.Info("The message is:", param.ActivityParamX)
+	logger.Info("The number is:", param.ActivityParamY)
 	return nil
+}
+
+// GetInfo is another custom Activity Definition
+func (a *YourActivityObject) GetInfo(ctx context.Context ) (*YourActivityResultObject, error){
+	return &YourActivityResultObject{
+		ResultFieldX: *a.Message,
+		ResultFieldY: *a.Number,
+	}, nil
 }
 
 /* @dacx
@@ -94,12 +102,12 @@ id: how-to-develop-an-activity-definition-in-go
 title: How to develop an Activity Definition in Go
 label: Activity Definition
 description: In the Temporal Go SDK programming model, an Activity Definition is an exportable function or a `struct` method.
-lines: 1-8, 37-56, 70-82
+lines: 1-7, 37-56, 70-82
 @dacx */
 
 /* @dacx
 id: how-to-define-activity-parameters-in-go
-title: How to do define Activity parameters in Go
+title: How to define Activity parameters in Go
 label: Activity parameters
 description: The only required parameter is `context.Context`, but Activities can support many custom parameters.
 lines: 9-22, 56, 70

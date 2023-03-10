@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"log"
 	"net/http"
 
@@ -34,7 +35,7 @@ func main() {
 	http.HandleFunc("/start", func(w http.ResponseWriter, r *http.Request) {
 		startWorkflowHandler(w, r, temporalClient)
 	})
-	err = http.ListenAndServe(":8081", nil)
+	err = http.ListenAndServe(":8091", nil)
 	if err != nil {
 		log.Fatalln("Unable to run http server", err)
 	}
@@ -51,8 +52,8 @@ func startWorkflowHandler(w http.ResponseWriter, r *http.Request, temporalClient
 	// Use an object as your Workflow Function parameter.
 	// Objects enable your Function signature to remain compatible if fields change.
 	workflowParams := yourapp.YourWorkflowParam{
-		WorkflowParamX: "Hello",
-		WorkflowParamY: 0,
+		WorkflowParamX: "Hello World!",
+		WorkflowParamY: 999,
 	}
 	// Make the call to the Temporal Cluster to start the Workflow Execution.
 	workflowExecution, err := temporalClient.ExecuteWorkflow(
@@ -67,6 +68,17 @@ func startWorkflowHandler(w http.ResponseWriter, r *http.Request, temporalClient
 	log.Println("Started Workflow!")
 	log.Println("WorkflowID:", workflowExecution.GetID())
 	log.Println("RunID:", workflowExecution.GetRunID())
+	var result yourapp.YourWorkflowResultObject
+	workflowExecution.Get(context.Background(), &result)
+	if err != nil {
+        log.Fatalln("Unable to get Workflow result:", err)
+    }
+	b, err := json.Marshal(result)
+    if err != nil {
+        log.Fatalln(err)
+        return
+    }
+    log.Println(string(b))
 }
 
 /* @dacx

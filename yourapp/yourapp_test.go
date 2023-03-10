@@ -12,17 +12,19 @@ import (
 func Test_Workflow(t *testing.T) {
 	testSuite := &testsuite.WorkflowTestSuite{}
 	env := testSuite.NewTestWorkflowEnvironment()
-
-	// Mock activity implementation
-	var activities *YourActivityObject
+	wfParam := YourWorkflowParam{ 
+		WorkflowParamX: "Hello World!",
+		WorkflowParamY: 100,
+	}
 	activityResult := YourActivityResultObject{
-		ResultFieldX: "Hello World!",
+		ResultFieldX: "Message",
 		ResultFieldY: 1,
 	}
-	env.OnActivity(activities.YourActivityDefinition, mock.Anything, mock.Anything).Return(activityResult, nil)
-	env.OnActivity(activities.PrintSharedSate, mock.Anything).Return(nil)
-	env.ExecuteWorkflow(YourWorkflowDefinition, YourWorkflowParam{})
-
+	var activities *YourActivityObject
+	env.OnActivity(activities.YourActivityDefinition, mock.Anything, mock.Anything).Return(&activityResult, nil)
+	env.OnActivity(activities.GetInfo, mock.Anything).Return(&activityResult, nil)
+	env.OnActivity(activities.PrintInfo, mock.Anything, mock.Anything).Return(nil)
+	env.ExecuteWorkflow(YourWorkflowDefinition, wfParam)
 	require.True(t, env.IsWorkflowCompleted())
 	require.NoError(t, env.GetWorkflowError())
 	var result YourWorkflowResultObject
@@ -32,23 +34,19 @@ func Test_Workflow(t *testing.T) {
 func Test_Activity(t *testing.T) {
 	testSuite := &testsuite.WorkflowTestSuite{}
 	env := testSuite.NewTestActivityEnvironment()
-
+	activityParam := YourActivityParam{
+		ActivityParamX: "Message",
+		ActivityParamY: 1,
+	}
 	var activities YourActivityObject
-
 	message := "No messages!"
 	counter := 0
-	activities.SharedMessageState = &message
-	activities.SharedCounterState = &counter
-
+	activities.Message = &message
+	activities.Number = &counter
 	env.RegisterActivity(activities.YourActivityDefinition)
-
-	activityParam := YourActivityParam{
-		ActivityParamX: "Hello",
-		ActivityParamY: 0,
-	}
 	val, err := env.ExecuteActivity(activities.YourActivityDefinition, activityParam)
 	require.NoError(t, err)
 	var res YourActivityResultObject
 	require.NoError(t, val.Get(&res))
-	require.Equal(t, "Hello World!", res.ResultFieldX)
+	require.Equal(t, "Success", res.ResultFieldX)
 }
