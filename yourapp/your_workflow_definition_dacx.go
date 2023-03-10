@@ -118,29 +118,29 @@ The Temporal Go SDK has APIs to handle equivalent Go constructs:
   See [Tracing](/app-dev-context/tracing) for more information about context propagation.
 */
 
-/* @dac
+/* @dacx
 id: how-to-develop-a-workflow-definition-in-go
 title: How to develop a Workflow Definition in Go
 label: Workflow Definition
 description: In the Temporal Go SDK programming model, a Workflow Definition is an exportable function.
 lines: 1-7, 47-51
-@dac */
+@dacx */
 
-/* @dac
+/* @dacx
 id: how-to-define-workflow-parameters-in-go
 title: How to define Workflow parameters in Go
 label: Workflow parameters
 description: A Go-based Workflow Definition must accept workflow.Context and may support multiple custom parameters.
 lines:  1-29, 53-54, 89
-@dac */
+@dacx */
 
-/* @dac
+/* @dacx
 id: how-to-define-workflow-return-values-in-go
 title: How to define Workflow return values in Go
 label: Workflow return values
 description: A Go-based Workflow Definition can return either just an `error` or a `customValue, error` combination.
 lines: 1-7, 31-40, 53-54, 83-96
-@dac */
+@dacx */
 
 /*dac
 id: how-to-handle-workflow-logic-requirements-in-go
@@ -148,4 +148,4 @@ title: How to handle Workflow logic requirements in Go
 label: Workflow logic requirements
 description: In Go, Workflow Definition code cannot directly do a few things to adhere to deterministic constraints.
 lnes: 98-119
-@dac */
+@dacx */

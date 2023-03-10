@@ -1,4 +1,3 @@
-// @@@SNIPSTART samples-go-yourapp-tests
 package yourapp
 
 import (
@@ -53,5 +52,3 @@ func Test_Activity(t *testing.T) {
 	require.NoError(t, val.Get(&res))
 	require.Equal(t, "Hello World!", res.ResultFieldX)
 }
-
-// @@@SNIPEND
