@@ -36,17 +36,13 @@ type YourActivityResultObject struct {
 
 /*
 In the Temporal Go SDK programming model, an Activity Definition is an exportable function or a `struct` method.
-Below is an example of a basic exportable function.
+Below is an example of both a basic Activity Definition and of an Activity defined as a Struct method.
 */
 
 // YourSimpleActivityDefinition is a basic Activity Definiton.
 func YourSimpleActivityDefinition(ctx context.Context) error {
 	return nil
 }
-
-/*
-Below is an example of an Activity defined as a Struct method.
-*/
 
 // YourActivityObject is the struct that maintains shared state across Activities.
 // If the Worker crashes this Activity object loses its state.
@@ -98,7 +94,7 @@ id: how-to-develop-an-activity-definition-in-go
 title: How to develop an Activity Definition in Go
 label: Activity Definition
 description: In the Temporal Go SDK programming model, an Activity Definition is an exportable function or a `struct` method.
-lines: 1-8, 37-60, 74-86
+lines: 1-8, 37-56, 70-82
 @dacx */
 
 /* @dacx
@@ -106,7 +102,7 @@ id: how-to-define-activity-parameters-in-go
 title: How to do define Activity parameters in Go
 label: Activity parameters
 description: The only required parameter is `context.Context`, but Activities can support many custom parameters.
-lines: 9-22, 60, 74
+lines: 9-22, 56, 70
 @dacx */
 
 /* @dacx
@@ -114,5 +110,5 @@ id: how-to-define-activity-return-values-in-go
 title: How to define Activity return values in Go
 label: Activity return values
 description: A Go-based Activity Definition can return either just an `error` or a `customValue, error` combination.
-lines: 24-35, 60, 67-74
+lines: 24-35, 56, 63-70
 @dacx */
