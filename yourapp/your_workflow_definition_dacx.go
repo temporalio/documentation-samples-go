@@ -14,7 +14,7 @@ It is acquired from the [`go.temporal.io/sdk/workflow`](https://pkg.go.dev/go.te
 The `workflow.Context` entity operates similarly to the standard `context.Context` entity provided by Go.
 The only difference between `workflow.Context` and `context.Context` is that the `Done()` function, provided by `workflow.Context`, returns `workflow.Channel` instead of the standard Go `chan`.
 
-The second parameter, `string`, is a custom parameter that is passed to the Workflow when it is invoked.
+Additional parameters can be passed to the Workflow when it is invoked.
 A Workflow Definition may support multiple custom parameters, or none.
 These parameters can be regular type variables or safe pointers.
 However, the best practice is to pass a single parameter that is of a `struct` type, so there can be some backward compatibility if new parameters are added.
