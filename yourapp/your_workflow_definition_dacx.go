@@ -158,7 +158,7 @@ description: A Go-based Workflow Definition can return either just an `error` or
 lines: 1-7, 31-40, 53-54, 96-112
 @dacx */
 
-/* @dac
+/* @dacx
 id: how-to-handle-workflow-logic-requirements-in-go
 title: How to handle Workflow logic requirements in Go
 label: Workflow logic requirements
@@ -166,10 +166,10 @@ description: In Go, Workflow Definition code cannot directly do a few things to 
 lines: 114-135
 @dacx */
 
-/* @dac
+/* @dacx
 id: how-to-spawn-an-activity-execution-in-go
 title: How to spawn an Activity Execution in Go
 label: Activity Execution
 description: Use the `ExecuteActivity()` API call available from the `go.temporal.io/sdk/workflow` package.
 lines: 54-83, 105
-@dac */
+@dacx */
