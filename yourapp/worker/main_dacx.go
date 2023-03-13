@@ -72,6 +72,10 @@ To customize the Workflow Type, set the `Name` parameter with `RegisterOptions` 
 */
 
 /*
+To customize the Activity Type, set the `Name` parameter with `RegisterOptions` when registering your Activity with a Worker.
+*/
+
+/*
 
 :::tip
 
@@ -91,7 +95,7 @@ id: how-to-develop-a-worker-in-go
 title: How to develop a Worker in Go
 label: Develop Worker
 description: Develop an instance of a Worker by calling worker.New(), available via the go.temporal.io/sdk/worker package.
-lines: 1-40, 46-55, 61-66, 74-87
+lines: 1-40, 46-55, 61-66, 78-91
 @dacx */
 
 /* @dacx
@@ -100,4 +104,12 @@ title: How to customize Workflow Type in Go
 label: Customize Workflow Type
 description: To customize the Workflow Type set the Name parameter with RegisterOptions when registering your Workflow with a Worker.
 lines: 1-12, 28, 37, 41-45, 66-72
+@dacx */
+
+/* @dacx
+id: how-to-customize-activity-type-in-go
+title: How to customize Activity Type in Go
+label: Customize Activity Type
+description: To customize the Workflow Type set the Name parameter with RegisterOptions when registering your Workflow with a Worker.
+lines: 28, 37, 56-62, 66
 @dacx */
