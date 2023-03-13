@@ -84,5 +84,5 @@ id: how-to-connect-to-a-development-cluster-in-go
 title: How to connect to a Temporal dev Cluster in Go
 label: Connect to a dev Cluster
 description: Use the Dial() method on the Temporal Client and omit setting any client options. If there is a local dev Cluster running, the Client will connect to it.
-lines: 1-31, 43-65, 80
+lines: 1-31, 40
 @dacx */
