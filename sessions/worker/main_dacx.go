@@ -27,10 +27,8 @@ func main() {
 		EnableSessionWorker: true,
 	}
 	w := worker.New(temporalClient, "fileprocessing", workerOptions)
-
 	w.RegisterWorkflow(sessions.SomeFileProcessingWorkflow)
 	w.RegisterActivity(&sessions.FileActivities{})
-
 	err = w.Run(worker.InterruptCh())
 	if err != nil {
 		log.Fatalln("Unable to start worker", err)
@@ -42,5 +40,5 @@ id: how-to-enable-sessions-on-a-worker
 title: How to enable Sessions on a Worker
 label: Sessions
 description: Set EnableSessionWorker to true in the Worker options.
-lines: 1-3, 7, 10-12, 22-34
+lines: 12-14, 16, 26-32, 36
 @dacx */
