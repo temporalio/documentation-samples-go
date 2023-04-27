@@ -6,5 +6,4 @@ From another terminal, start the Workflow Execution:
 
 Create Schedule:
 
-Backfill:
 
