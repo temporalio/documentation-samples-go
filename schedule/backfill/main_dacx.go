@@ -8,6 +8,7 @@ import (
 )
 
 /*
+
  */
  func main() {
 	ctx := context.Background()
@@ -20,3 +21,11 @@ import (
 	}
 	defer c.Close()
  }
+
+/* @dacx
+id: backfill-schedule-in-go
+title: How to Backfill a Schedule in Go
+label: Backfill
+description: Use Temporal's Workflow API to execute Schedules ahead of time.
+lines: 
+@dacx */

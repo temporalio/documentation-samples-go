@@ -8,8 +8,14 @@ import (
 	"go.temporal.io/sdk/client"
 )
 
-/*
- */
+/* @dacx
+Schedules are created with the `create` action.
+For each new Schedule, tbe Temporal Server generates a unique Schedule ID.
+
+To create a Schedule in Go, use `ScheduleClient().Create()` on the [Client](/concepts/what-is-the-temporal-client).
+Schedules must be initialized with a Schedule ID, [Spec](/concepts/what-is-a-schedule#spec), and [Action](/concepts/what-is-a-schedule#action) to perform.
+Enter these values in `client.Schedule.Options{}`.
+ @dacx */
 
 func main() {
 	ctx := context.Background()
@@ -39,3 +45,10 @@ func main() {
 		log.Fatalln("Unable to create schedule", err)
 	}
 }
+/* @dacx
+id: create-schedule-in-go
+title: How to Create a Schedule in Go
+label: Create
+description: Use Temporal's Workflow API to create a Schedule.
+lines: 11-15, 32-35, 16-17, 35-42
+@dacx */
