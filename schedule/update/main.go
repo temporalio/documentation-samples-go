@@ -39,7 +39,9 @@ func main() {
 
 /*
 Updating a Schedule changes the configuration of an existing Schedule.
+These changes can be made to Workflow Actions, Action parameters, Memos, and the Workflow's Cancellation Policy.
 
+Use `Update()` on the ScheduleHandle to modify a Schedule.
 */
 
 /* @dacx
@@ -47,5 +49,5 @@ id: how-to-update-a-schedule-in-go
 title: How to update a Schedule in Go
 label: Update Schedule
 description: Update the configuration of a Schedule.
-lines: 
+lines: 10, 29-38
 @dacx */
