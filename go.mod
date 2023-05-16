@@ -4,7 +4,8 @@ go 1.19
 
 require (
 	github.com/pborman/uuid v1.2.1
-	go.temporal.io/sdk v1.22.1
+	go.temporal.io/api v1.19.1-0.20230322213042-07fb271d475b
+	go.temporal.io/sdk v1.22.2
 )
 
 require (
@@ -21,7 +22,6 @@ require (
 	github.com/robfig/cron v1.2.0 // indirect
 	github.com/stretchr/objx v0.5.0 // indirect
 	github.com/stretchr/testify v1.8.2 // indirect
-	go.temporal.io/api v1.19.1-0.20230322213042-07fb271d475b // indirect
 	go.uber.org/atomic v1.11.0 // indirect
 	golang.org/x/net v0.10.0 // indirect
 	golang.org/x/sys v0.8.0 // indirect

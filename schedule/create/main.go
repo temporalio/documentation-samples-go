@@ -36,8 +36,7 @@ func main() {
 		log.Fatalln("Unable to create schedule", err)
 	}
     log.Println("Schedule created", "ScheduleID", scheduleID)
-	// End this thing.
-	scheduleHandle.Delete(ctx)
+	_, _ = scheduleHandle.Describe(ctx)
 }
 
 /*
