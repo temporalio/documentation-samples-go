@@ -60,5 +60,5 @@ id: how-to-pause-a-schedule-in-go
 title: How to pause a Schedule in Go
 label: Pause Schedule
 description: Show how to unpause and pause a Schedule in Go.
-lines: 12, 26, 34-35, 40-46
+lines: 12, 26, 34-35, 40-46, 48-56
 @dacx */

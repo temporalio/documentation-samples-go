@@ -57,5 +57,5 @@ id: how-to-list-a-schedule-in-go
 title: How to list a Schedule in Go
 label: List Schedules
 description: List all Schedules in a Namespace in Go.
-lines: 12, 39-42, 47
+lines: 12, 39-42, 47, 49-53
 @dacx */

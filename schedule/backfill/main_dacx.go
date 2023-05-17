@@ -67,7 +67,6 @@ This is useful for executing a missed or delayed Action, or for testing the Work
 
 To backfill a Schedule in Go, use `Backfill()` on `ScheduleHandle`.
 Specify the start and end times to execute the Workflow, along with the overlap policy.
-
 */
 
 /* @dacx
@@ -75,5 +74,5 @@ id: how-to-backfill-a-schedule-in-go
 title: How to backfill a Schedule in Go
 label: Backfill Schedule
 description: Backfill a Schedule to execute a Workflow at a later time.
-lines: 14, 48-61, 63
+lines: 14, 48-61, 63, 64-70
 @dacx */

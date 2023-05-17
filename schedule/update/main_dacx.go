@@ -49,5 +49,5 @@ id: how-to-update-a-schedule-in-go
 title: How to update a Schedule in Go
 label: Update Schedule
 description: Update the configuration of a Schedule.
-lines: 10, 29-38
+lines: 10, 29-38, 40-45
 @dacx */

@@ -45,5 +45,5 @@ id: how-to-describe-a-schedule-in-go
 title: How to describe a Schedule in Go
 label: Describe Schedule
 description: Describe a Schedule in Go.
-lines: 10, 32-34
+lines: 10, 32-34, 36-41
 @dacx */

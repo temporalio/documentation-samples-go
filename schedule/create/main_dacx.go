@@ -52,5 +52,5 @@ id: how-to-create-a-schedule-in-go
 title: How to create a Schedule in Go
 label: Create Schedule
 description: Create a Schedule for a Workflow in Go.
-lines: 12, 22-34, 41
+lines: 12, 22-34, 41, 42-48
 @dacx */

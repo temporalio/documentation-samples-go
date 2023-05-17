@@ -50,5 +50,5 @@ id: how-to-delete-a-schedule-in-go
 title: How to delete a Schedule in Go
 label: Delete Schedule
 description: 
-lines: 12, 38-39
+lines: 12, 38-39, 41-46
 @dacx */
