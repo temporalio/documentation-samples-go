@@ -30,22 +30,22 @@ const YourUpdateWFID = "updatable_workflow"
 // YourValidUpdateWFID is the Id used for the UpdatableWorkflowWithValidator execution.
 const YourValidUpdateWFID = "validating_updatable_workflow"
 
-// YourUpdateArg defines the structure of the Update argument
+// YourUpdateArg defines the structure of the Update argument.
 type YourUpdateArg struct {
 	Add int
 }
 
-// YourUpdateResult defines the structure of the Update result
+// YourUpdateResult defines the structure of the Update result.
 type YourUpdateResult struct {
 	Total int
 }
 
-// WFParam defines the structure of thw Workflow argument
+// WFParam defines the structure of thw Workflow argument.
 type WFParam struct {
 	StartCount int
 }
 
-// WFResult defines the structure of the Worfklow result
+// WFResult defines the structure of the Worfklow result.
 type WFResult struct {
 	EndTotal int
 }
@@ -59,8 +59,8 @@ The function can return either a serializable value and an error or just an erro
 Unlike Query handlers, Update handlers can safely observe and mutate Workflow state.
 */
 
-// YourUpdatableWorkflow is a Workflow Definition
-// This Workflow sets an Update handler and then sleeps for a minute
+// YourUpdatableWorkflow is a Workflow Definition.
+// This Workflow sets an Update handler and then sleeps for a minute.
 // After setting the Update hanlder it sleeps for 1 minutue.
 // Updates can be sent to the Workflow during this time.
 func YourUpdatableWorkflow(ctx workflow.Context, param WFParam) (WFResult, error) {
@@ -72,7 +72,7 @@ func YourUpdatableWorkflow(ctx workflow.Context, param WFParam) (WFResult, error
 		}
 		return result, nil
 	})
-	// Sleep for 60 seconds to have time to send Updates
+	// Sleep for 60 seconds to have time to send Updates.
 	workflow.Sleep(ctx, 60*time.Second)
 	endTotal := WFResult{
 		EndTotal: counter,
@@ -106,12 +106,12 @@ func UpdatableWorkflowWithValidator(ctx workflow.Context, param WFParam) (WFResu
 			}
 			return result, nil
 		},
-		// Setting the not
+		// Set the isPositive validator.
 		workflow.UpdateHandlerOptions{Validator: isPositive},
 	); err != nil {
 		return WFResult{}, err
 	}
-	// Sleep for 60 seconds to have time to send Updates
+	// Sleep for 60 seconds to have time to send Updates.
 	workflow.Sleep(ctx, 60*time.Second)
 	endTotal := WFResult{
 		EndTotal: counter,
@@ -119,7 +119,7 @@ func UpdatableWorkflowWithValidator(ctx workflow.Context, param WFParam) (WFResu
 	return endTotal, nil
 }
 
-// isPositive is a validator function
+// isPositive is a validator function.
 // It returns an error if the int value is below 1.
 func isPositive(ctx workflow.Context, u YourUpdateArg) error {
 	log := workflow.GetLogger(ctx)
@@ -135,16 +135,16 @@ func isPositive(ctx workflow.Context, u YourUpdateArg) error {
 id: how-to-define-an-update-type-in-go
 title: How to define an Update Type in Go
 sidebar_label: Update type
-description: An Update type, also called an Update name, is a `string` value.
-lines: todo
+description: An Update type, also called an Update name, is a string value.
+lines: 10-19, 66,68,74,81
 @dacx */
 
 /* @dacx
 id: how-to-handle-an-update-in-go
 title: How to handle an Update in Go
 sidebar_label: Handle Update
-description: Use the `SetUpateHandler` API from the `go.temporal.io/sdk/workflow` package to register an Update Handler for a given name.
-lines: todo
+description: Use the SetUpateHandler API from the go.temporal.io/sdk/workflow package to register an Update Handler for a given name.
+lines: 53-74, 81
 @dacx */
 
 /* @dacx
@@ -152,5 +152,5 @@ id: how-to-set-an-update-validator-function-in-go
 title: How to set an Update validator function in go
 label: Validator function
 description: Use the SetUpdateHandlerWithOptions API and pass it a validator function to validate inputs.
-lines: todo
+lines: 83-102, 108-113, 120, 122-132
 @dacx */
