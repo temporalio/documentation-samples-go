@@ -19,7 +19,7 @@ type FileActivities struct{}
 func (a *FileActivities) DownloadFile(ctx context.Context, param FileProcessingWFParam) (FileActivityResult, error) {
 	logger := activity.GetLogger(ctx)
 	logger.Info("Downloading file from", param.CloudFileLocation)
-	// Introduce logic to download a file and save it
+	// Introduce logic to download a file and save it.
 	results := FileActivityResult{
 		FileName: "some_pre_processed_file_name.mov",
 	}
@@ -30,7 +30,7 @@ func (a *FileActivities) DownloadFile(ctx context.Context, param FileProcessingW
 func (a *FileActivities) ProcessFile(ctx context.Context, param FileActivityParam) (FileActivityResult, error) {
 	logger := activity.GetLogger(ctx)
 	logger.Info("Processing file", param.FileName)
-	// Introduce logic to process a file in some way
+	// Introduce logic to process a file in some way.
 	results := FileActivityResult{
 		FileName: "some_post_processed_file_name.mp4",
 	}
@@ -40,7 +40,7 @@ func (a *FileActivities) ProcessFile(ctx context.Context, param FileActivityPara
 
 func (a *FileActivities) UploadFile(ctx context.Context, param FileActivityParam) error {
 	logger := activity.GetLogger(ctx)
-	logger.Info("Uploading post processed file to new location")
-	// Introduce logice to upload the file to some Cloud storage
+	logger.Info("Uploading post-processed file to new location")
+	// Introduce logic to upload the file to some cloud storage.
 	return nil
 }

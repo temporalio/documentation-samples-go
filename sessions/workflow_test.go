@@ -19,7 +19,7 @@ func TestUnitTestSuite(t *testing.T) {
 	suite.Run(t, new(UnitTestSuite))
 }
 
-// Test_SomeFileProcessingWorkflow is a function to test the Workflow
+// Test_SomeFileProcessingWorkflow is a function to test the Workflow.
 func (s *UnitTestSuite) Test_SomeFileProcessingWorkflow() {
 	env := s.NewTestWorkflowEnvironment()
 	env.SetWorkerOptions(worker.Options{

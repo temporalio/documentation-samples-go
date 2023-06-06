@@ -2,7 +2,7 @@
 
 This application showcases the use of the Session APIs available in the Temporal Go SDK.
 
-The sample is contains information about usage code structure within the code comments.
+You can find information about usage and code structure in the code comments.
 
 # How to run
 
@@ -21,4 +21,4 @@ go run sessions/worker/main_dacx.go
 go run sessions/gateway/main_dacx.go
 ```
 
-4. Either in your browser, or via curl command hit `http://localhost:8091/start`
+4. Either in your browser or via a cURL command, go to `http://localhost:8091/start`.

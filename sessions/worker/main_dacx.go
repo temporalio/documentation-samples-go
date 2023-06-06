@@ -25,8 +25,8 @@ func main() {
 	// Enable Sessions for this Worker.
 	workerOptions := worker.Options{
 		EnableSessionWorker: true,
-		// This configures the maximum allowed concurrent sessions
-		// Only customize this value if you need to.
+		// This configures the maximum allowed concurrent sessions.
+		// Customize this value only if you need to.
 		MaxConcurrentSessionExecutionSize: 1000,
 	}
 	w := worker.New(temporalClient, "fileprocessing", workerOptions)
@@ -42,7 +42,8 @@ func main() {
 To limit the number of concurrent Sessions running on a Worker, set the `MaxConcurrentSessionExecutionSize` field of `worker.Options` to the desired value.
 By default, this field is set to a very large value, so there's no need to manually set it if no limitation is needed.
 
-If a Worker hits this limitation, it won't accept any new `CreateSession()` requests until one of the existing sessions is completed. `CreateSession()` will return an error if the session can't be created within `CreationTimeout`.
+If a Worker hits this limitation, it won't accept any new `CreateSession()` requests until one of the existing sessions is completed.
+If the session can't be created within `CreationTimeout`, `CreateSession()` returns an error .
 */
 
 /* @dacx
@@ -57,6 +58,6 @@ lines: 12-14, 16, 25-27, 31-35, 39
 id: how-to-configure-max-concurrent-sessions
 title: How to configure the maximum concurrent Sessions on the Worker
 label: Max concurrent Sessions
-description: Set EnableSessionWorker to true in the Worker options.
+description: Set MaxConcurrentSessionExecutionSize in the Worker options.
 lines: 16, 26, 28-30, 39, 41-46
 @dacx */

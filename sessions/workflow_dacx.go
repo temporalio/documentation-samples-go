@@ -9,7 +9,7 @@ import (
 /*
 Use the [`CreateSession`](https://pkg.go.dev/go.temporal.io/sdk/workflow#CreateSession) API to create a Context object that can be passed to calls to spawn Activity Executions.
 
-Pass an instance of `workflow.Context` and [`SessionOptions`](https://pkg.go.dev/go.temporal.io/sdk/workflow#SessionOptions) to the `CreateSession` API call and get a Session Context which contains metadata information of the Session.
+Pass an instance of `workflow.Context` and [`SessionOptions`](https://pkg.go.dev/go.temporal.io/sdk/workflow#SessionOptions) to the `CreateSession` API call and get a Session Context that contains metadata information of the Session.
 
 Use the Session Context to spawn all Activity Executions that should belong to the Session.
 All associated Activity Tasks are then processed by the same Worker Entity.
@@ -19,22 +19,22 @@ type FileProcessingWFParam struct {
 	CloudFileLocation string
 }
 
-// SomeFileProcessingWorkflow is a Workflow Definition
+// SomeFileProcessingWorkflow is a Workflow Definition.
 func SomeFileProcessingWorkflow(ctx workflow.Context, param FileProcessingWFParam) error {
 	activityOptions := workflow.ActivityOptions{
 		StartToCloseTimeout: time.Minute,
 	}
 	ctx = workflow.WithActivityOptions(ctx, activityOptions)
-	// By placing all three steps in another function, the entire sequence retries on a different host from the first Activity on any error
-	// In a real application it might be reasonable to retry individual Activities as well as the whole sequence discriminating between different types of Errors.
-	// See the retryactivity sample for a more sophisticated retry implementation.
+	// By placing all three steps in another function, the entire sequence retries on a different host from the first Activity on any error.
+	// In a real application, it might be reasonable to retry individual Activities as well as the whole sequence discriminating among various types of errors.
+	// See the retryactivity sample for a more sophisticated retry implementation:
 	// https://github.com/temporalio/samples-go/tree/main/retryactivity
 	err := processFile(ctx, param)
 	return err
 }
 
 func processFile(ctx workflow.Context, param FileProcessingWFParam) error {
-	// Set the required timeouts for the Worker Session
+	// Set the required timeouts for the Worker Session.
 	sessionOptions := &workflow.SessionOptions{
 		CreationTimeout:  time.Minute,
 		ExecutionTimeout: time.Minute,
@@ -64,27 +64,28 @@ func processFile(ctx workflow.Context, param FileProcessingWFParam) error {
 }
 
 /*
-When the `CreateSession` API is called, the Task Queue name that is specified in the `ActivityOptions` is used (or in the `StartWorkflowOptions` if the Task Queue name is not specified in `ActivityOptions`), and a Session is created with one of the Workers polling that Task Queue.
+When the `CreateSession` API is called, the Task Queue name that is specified in `ActivityOptions` (or in `StartWorkflowOptions` if the Task Queue name is not specified in `ActivityOptions`) is used, and a Session is created with one of the Workers polling that Task Queue.
 
 The Session Context is cancelled if the Worker executing this Session dies or `CompleteSession()` is called.
-When using the returned Session Context to spawn Activity Executions, a `workflow.ErrSessionFailed` error may be returned if the Session framework detects that the Worker executing this Session has died.
+When using the returned Session Context to spawn Activity Executions, a `workflow.ErrSessionFailed` error is returned if the Session framework detects that the Worker executing this Session has died.
 The failure of Activity Executions won't affect the state of the Session, so you still need to handle the errors returned from your Activities and call `CompleteSession()` if necessary.
 
-`CreateSession()` will return an error if the context passed in already contains an open Session.
-If all the Workers are currently busy and unable to handle a new Session, the framework will keep retrying until the `CreationTimeout` you specified in `SessionOptions` has passed before returning an error (check the **Concurrent Session Limitation** section for more details).
+If the context passed in already contains an open Session, `CreateSession()` returns an error.
+If all the Workers are currently busy and unable to handle a new Session, the framework keeps retrying until the `CreationTimeout` period you specified in `SessionOptions` has passed before returning an error.
+(For more details, check the "Concurrent Session Limitation" section.)
 
 `CompleteSession()` releases the resources reserved on the Worker, so it's important to call it as soon as you no longer need the Session.
-It will cancel the session context and therefore all the Activity Executions using that Session Context.
+It cancels the session context and therefore all the Activity Executions using that Session Context.
 It is safe to call `CompleteSession()` on a failed Session, meaning that you can call it from a `defer` function after the Session is successfully created.
 
 If the Worker goes down between Activities, any scheduled Activities meant for the Session Worker are canceled.
-If not, you will get a `workflow.ErrSessionFailed` error when the next call of `workflow.ExecuteActivity()` is made from that Workflow.
+If not, you get a `workflow.ErrSessionFailed` error when the next call of `workflow.ExecuteActivity()` is made from that Workflow.
 */
 
 /* @dacx
 id: how-to-create-a-session-from-the-workflow-in-go
 title: How to create a Worker Session in Go
 label: Worker Session
-description: First, enable Sessions on the Worker via the Worker Options and then use the `CreateSession` API to create a Context object that can be passed to the calls to spawn Activity Executions.
+description: Enable Sessions on the Worker via the Worker Options and then use the `CreateSession` API to create a Context object that can be passed to the calls to spawn Activity Executions.
 lines: 1-16, 22-27, 38-47, 51, 57, 62, 64-82
 @dacx */
