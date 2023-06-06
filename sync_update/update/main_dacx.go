@@ -13,10 +13,10 @@ import (
 )
 
 /*
-Use the `UpdateWorkflow()` method on an instance of the [Go SDK Temporal Client](https://pkg.go.dev/go.temporal.io/sdk/client#Client) to send an [Update](/concepts/what-is-an-update) to a [Workflow Execution](/workflows#workflow-execution).
+Invoke the UpdateWorkflow() method on an instance of the [Go SDK Temporal Client](https://pkg.go.dev/go.temporal.io/sdk/client#Client) to dispatch an [Update](/concepts/what-is-an-update) to a Workflow Execution.
 
-The Workflow Id is required, specifying a Run Id is optional.
-If only the Workflow Id is supplied (provide an empty string as the Run Id param), the Workflow Execution that is running receives the Signal.
+You must provide the Workflow Id, but specifying a Run Id is optional.
+If you supply only the Workflow Id (and provide an empty string as the Run Id param), the currently running Workflow Execution receives the Update.
 */
 
 func main() {
@@ -67,4 +67,4 @@ title: How to send an Update from a Temporal Client in Go
 label: Send Update from Client
 description: Use the UpdateWorkflow method on an instance of the Go SDK Temporal Client to send an Update to a Workflow Execution.
 lines: 15-22, 44-62
-@dax */
+@dacx */

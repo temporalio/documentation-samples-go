@@ -8,11 +8,11 @@ import (
 )
 
 /*
-In Go, an Update type, also called an Update name, is a `string` value.
-The arguments and result must be [serializable](/concepts/what-is-a-data-converter).
-The Update name is used to as an identifier when the Update is sent and received.
-The name is not tied to the data type(s) that the are sent with the Update.
-Make sure that each Workflow listening to the same Update name can handle the same Update arguments.
+In Go, you define an Update type, also known as an Update name, as a `string` value.
+You must ensure the arguments and result are [serializable](/concepts/what-is-a-data-converter).
+When sending and receiving the Update, use the Update name as an identifier.
+The name does not link to the data type(s) sent with the Update.
+Ensure that every Workflow listening to the same Update name can handle the same Update arguments.
 */
 
 // YourUpdateName holds a string value used to correlate Updates.
@@ -51,12 +51,13 @@ type WFResult struct {
 }
 
 /*
-Use the [SetUpdateHandler](https://pkg.go.dev/go.temporal.io/sdk/workflow#SetUpdateHandler) API from the `go.temporal.io/sdk/workflow` package to register an Update handler for a given name.
-The handler function can take multiple serializable input parameters, although we recommend that you use only a single parameter to allow for fields to be added in future versions while retaining backward compatibility.
-The function can optionally take a `workflow.Context` parameter in the first position.
-The function can return either a serializable value and an error or just an error.
+Register an Update handler for a given name using the [SetUpdateHandler](https://pkg.go.dev/go.temporal.io/sdk/workflow#SetUpdateHandler) API from the `go.temporal.io/sdk/workflow` package.
+The handler function can accept multiple serializable input parameters, but we recommend using only a single parameter.
+This practice allows you to add fields in future versions while maintaining backward compatibility.
+You can optionally include a `workflow.Context` parameter in the first position of the function.
+The function can return either a serializable value with an error or just an error.
 
-Unlike Query handlers, Update handlers can safely observe and mutate Workflow state.
+Update handlers, unlike Query handlers, can observe and mutate Workflow state safely.
 */
 
 // YourUpdatableWorkflow is a Workflow Definition.
@@ -81,14 +82,14 @@ func YourUpdatableWorkflow(ctx workflow.Context, param WFParam) (WFResult, error
 }
 
 /*
-Use an Update validator function to validate certain aspects of the data sent to the Workflow.
-For example, a Workflow that acts as a counter may never want to be fed a non-positive number.
-Use the `SetUpdateHanlderWithOptions` API and specify a validator function as one of the options.
+Validate certain aspects of the data sent to the Workflow using an Update validator function.
+For instance, a counter Workflow might never want to accept a non-positive number.
+Invoke the `SetUpdateHandlerWithOptions` API and define a validator function as one of the options.
 
-When a Validator function is used, the Update is sent to the Worker first before any Events are written to the Event History.
-A rejected Update is not written to the Event History.
-An accepted Update results in the `WorkflowExecutionUpdateAccepted` Event.
-The accepted Update is then executed on the Worker and, upon completion, causes a `WorkflowExecutionUpdateCompleted` Event to be written to the Event History.
+When you use a Validator function, the Worker receives the Update first, before any Events are written to the Event History.
+If the Update is rejected, it's not recorded in the Event History.
+If it's accepted, the `WorkflowExecutionUpdateAccepted` Event occurs.
+Afterwards, the Worker executes the accepted Update and, upon completion, a `WorkflowExecutionUpdateCompleted` Event gets written into the Event History.
 */
 
 // UpdatableWorkflowWithValidator is a Workflow Definition.
@@ -134,17 +135,17 @@ func isPositive(ctx workflow.Context, u YourUpdateArg) error {
 /* @dacx
 id: how-to-define-an-update-type-in-go
 title: How to define an Update Type in Go
-sidebar_label: Update type
+label: Update type
 description: An Update type, also called an Update name, is a string value.
-lines: 10-19, 66,68,74,81
+lines: 10-19, 67,69,75,82
 @dacx */
 
 /* @dacx
 id: how-to-handle-an-update-in-go
 title: How to handle an Update in Go
-sidebar_label: Handle Update
+label: Handle Update
 description: Use the SetUpateHandler API from the go.temporal.io/sdk/workflow package to register an Update Handler for a given name.
-lines: 53-74, 81
+lines: 53-75, 82
 @dacx */
 
 /* @dacx
@@ -152,5 +153,5 @@ id: how-to-set-an-update-validator-function-in-go
 title: How to set an Update validator function in go
 label: Validator function
 description: Use the SetUpdateHandlerWithOptions API and pass it a validator function to validate inputs.
-lines: 83-102, 108-113, 120, 122-132
+lines: 84-103, 109-114, 121, 123-133
 @dacx */
