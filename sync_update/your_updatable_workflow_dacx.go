@@ -53,11 +53,11 @@ type WFResult struct {
 /*
 Register an Update handler for a given name using the [SetUpdateHandler](https://pkg.go.dev/go.temporal.io/sdk/workflow#SetUpdateHandler) API from the `go.temporal.io/sdk/workflow` package.
 The handler function can accept multiple serializable input parameters, but we recommend using only a single parameter.
-This practice allows you to add fields in future versions while maintaining backward compatibility.
+This practice enables you to add fields in future versions while maintaining backward compatibility.
 You can optionally include a `workflow.Context` parameter in the first position of the function.
 The function can return either a serializable value with an error or just an error.
 
-Update handlers, unlike Query handlers, can observe and mutate Workflow state safely.
+Update handlers, unlike Query handlers, can observe and mutate Workflow state.
 */
 
 // YourUpdatableWorkflow is a Workflow Definition.
