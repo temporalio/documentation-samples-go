@@ -59,5 +59,5 @@ id: how-to-configure-max-concurrent-sessions
 title: How to configure the maximum concurrent Sessions on the Worker
 label: Max concurrent Sessions
 description: Set MaxConcurrentSessionExecutionSize in the Worker options.
-lines: 16, 26, 28-30, 39, 41-46
+lines: 16, 26, 28-30, 39, 41-47
 @dacx */
