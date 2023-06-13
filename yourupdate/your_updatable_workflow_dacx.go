@@ -148,6 +148,7 @@ title: How to define an Update Type in Go
 label: Update type
 description: An Update type, also called an Update name, is a string value.
 lines: 10-19, 69,71,80,87
+tags: go, update
 @dacx */
 
 /* @dacx
@@ -156,6 +157,7 @@ title: How to handle an Update in Go
 label: Handle Update
 description: Use the SetUpateHandler API from the go.temporal.io/sdk/workflow package to register an Update Handler for a given name.
 lines: 53-64, 69-77, 87
+tags: go, update
 @dacx */
 
 /* @dacx
@@ -164,4 +166,5 @@ title: How to set an Update validator function in go
 label: Validator function
 description: Use the SetUpdateHandlerWithOptions API and pass it a validator function to validate inputs.
 lines: 89-110, 116-122, 129-143
+tags: go, update
 @dacx */
