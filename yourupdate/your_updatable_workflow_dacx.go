@@ -68,7 +68,7 @@ Update handlers, unlike Query handlers, can change Workflow state.
 // Updates can be sent to the Workflow during this time.
 func YourUpdatableWorkflow(ctx workflow.Context, param WFParam) (WFResult, error) {
 	counter := param.StartCount
-	err := workflow.SetUpdateHandler(ctx, YourUpdateName, func(arg YourUpdateArg) (YourUpdateResult, error) {
+	err := workflow.SetUpdateHandler(ctx, YourUpdateName, func(ctx workflow.Context, arg YourUpdateArg) (YourUpdateResult, error) {
 		counter += arg.Add
 		result := YourUpdateResult{
 			Total: counter,
@@ -107,7 +107,7 @@ func UpdatableWorkflowWithValidator(ctx workflow.Context, param WFParam) (WFResu
 	counter := param.StartCount
 	err := workflow.SetUpdateHandlerWithOptions(
 		ctx, YourValidatedUpdateName,
-		func(arg YourUpdateArg) (YourUpdateResult, error) {
+		func(ctx workflow.Context, arg YourUpdateArg) (YourUpdateResult, error) {
 			counter += arg.Add
 			result := YourUpdateResult{
 				Total: counter,
@@ -130,6 +130,8 @@ func UpdatableWorkflowWithValidator(ctx workflow.Context, param WFParam) (WFResu
 
 // isPositive is a validator function.
 // It returns an error if the int value is below 1.
+// This function can not change the state of the Workflow.
+// workflow.Context can be used to log
 func isPositive(ctx workflow.Context, u YourUpdateArg) error {
 	log := workflow.GetLogger(ctx)
 	if u.Add < 1 {
@@ -161,5 +163,5 @@ id: how-to-set-an-update-validator-function-in-go
 title: How to set an Update validator function in go
 label: Validator function
 description: Use the SetUpdateHandlerWithOptions API and pass it a validator function to validate inputs.
-lines: 89-110, 116-122, 129, 131-141
+lines: 89-110, 116-122, 129-143
 @dacx */

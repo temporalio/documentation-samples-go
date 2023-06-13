@@ -46,6 +46,7 @@ func main() {
 		Add: n,
 	}
 	// Call the UpdateWorkflow API.
+	// A blank RunID means that the Update is routed to the most recent Workflow Run of the specified Workflow ID.
 	updateHandle, err := temporalClient.UpdateWorkflow(context.Background(), yourupdate.YourUpdateWFID, "", yourupdate.YourUpdateName, updateArg)
 	if err != nil {
 		log.Fatalln("Error issuing Update request", err)
@@ -64,5 +65,5 @@ id: how-to-send-an-update-from-a-client-in-go
 title: How to send an Update from a Temporal Client in Go
 label: Send Update from Client
 description: Use the UpdateWorkflow method on an instance of the Go SDK Temporal Client to send an Update to a Workflow Execution.
-lines: 15-22, 44-60
+lines: 15-22, 44-61
 @dacx */
