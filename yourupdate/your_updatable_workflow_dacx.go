@@ -1,4 +1,4 @@
-package sync_update
+package yourupdate
 
 import (
 	"fmt"
@@ -56,8 +56,10 @@ The handler function can accept multiple serializable input parameters, but we r
 This practice enables you to add fields in future versions while maintaining backward compatibility.
 You can optionally include a `workflow.Context` parameter in the first position of the function.
 The function can return either a serializable value with an error or just an error.
+The Workflow's WorkflowPanicPolicy configuration determines how panics are handled inside the Handler function.
+WorkflowPanicPolicy is set in the Worker Options.
 
-Update handlers, unlike Query handlers, can observe and mutate Workflow state.
+Update handlers, unlike Query handlers, can change Workflow state.
 */
 
 // YourUpdatableWorkflow is a Workflow Definition.
@@ -66,13 +68,16 @@ Update handlers, unlike Query handlers, can observe and mutate Workflow state.
 // Updates can be sent to the Workflow during this time.
 func YourUpdatableWorkflow(ctx workflow.Context, param WFParam) (WFResult, error) {
 	counter := param.StartCount
-	workflow.SetUpdateHandler(ctx, YourUpdateName, func(arg YourUpdateArg) (YourUpdateResult, error) {
+	err := workflow.SetUpdateHandler(ctx, YourUpdateName, func(arg YourUpdateArg) (YourUpdateResult, error) {
 		counter += arg.Add
 		result := YourUpdateResult{
 			Total: counter,
 		}
 		return result, nil
 	})
+	if err != nil {
+		return WFResult{}, err
+	}
 	// Sleep for 60 seconds to have time to send Updates.
 	workflow.Sleep(ctx, 60*time.Second)
 	endTotal := WFResult{
@@ -90,6 +95,8 @@ When you use a Validator function, the Worker receives the Update first, before 
 If the Update is rejected, it's not recorded in the Event History.
 If it's accepted, the `WorkflowExecutionUpdateAccepted` Event occurs.
 Afterwards, the Worker executes the accepted Update and, upon completion, a `WorkflowExecutionUpdateCompleted` Event gets written into the Event History.
+
+The platform treats a panic in the Validator function as a rejection of the Update."
 */
 
 // UpdatableWorkflowWithValidator is a Workflow Definition.
@@ -98,7 +105,7 @@ Afterwards, the Worker executes the accepted Update and, upon completion, a `Wor
 // Updates can be sent to the Workflow during this time.
 func UpdatableWorkflowWithValidator(ctx workflow.Context, param WFParam) (WFResult, error) {
 	counter := param.StartCount
-	if err := workflow.SetUpdateHandlerWithOptions(
+	err := workflow.SetUpdateHandlerWithOptions(
 		ctx, YourValidatedUpdateName,
 		func(arg YourUpdateArg) (YourUpdateResult, error) {
 			counter += arg.Add
@@ -109,7 +116,8 @@ func UpdatableWorkflowWithValidator(ctx workflow.Context, param WFParam) (WFResu
 		},
 		// Set the isPositive validator.
 		workflow.UpdateHandlerOptions{Validator: isPositive},
-	); err != nil {
+	)
+	if err != nil {
 		return WFResult{}, err
 	}
 	// Sleep for 60 seconds to have time to send Updates.
@@ -125,10 +133,10 @@ func UpdatableWorkflowWithValidator(ctx workflow.Context, param WFParam) (WFResu
 func isPositive(ctx workflow.Context, u YourUpdateArg) error {
 	log := workflow.GetLogger(ctx)
 	if u.Add < 1 {
-		log.Debug("Rejecting non-positive number, positive integers only", "update value:", u.Add)
+		log.Debug("Rejecting non-positive number, positive integers only", "UpdateValue", u.Add)
 		return fmt.Errorf("addend must be a positive integer (%v)", u.Add)
 	}
-	log.Debug("Accepting update", "update value:", u.Add)
+	log.Debug("Accepting Update", "UpdateValue", u.Add)
 	return nil
 }
 
@@ -137,7 +145,7 @@ id: how-to-define-an-update-type-in-go
 title: How to define an Update Type in Go
 label: Update type
 description: An Update type, also called an Update name, is a string value.
-lines: 10-19, 67,69,75,82
+lines: 10-19, 69,71,80,87
 @dacx */
 
 /* @dacx
@@ -145,7 +153,7 @@ id: how-to-handle-an-update-in-go
 title: How to handle an Update in Go
 label: Handle Update
 description: Use the SetUpateHandler API from the go.temporal.io/sdk/workflow package to register an Update Handler for a given name.
-lines: 53-75, 82
+lines: 53-64, 69-77, 87
 @dacx */
 
 /* @dacx
@@ -153,5 +161,5 @@ id: how-to-set-an-update-validator-function-in-go
 title: How to set an Update validator function in go
 label: Validator function
 description: Use the SetUpdateHandlerWithOptions API and pass it a validator function to validate inputs.
-lines: 84-103, 109-114, 121, 123-133
+lines: 89-110, 116-122, 129, 131-141
 @dacx */

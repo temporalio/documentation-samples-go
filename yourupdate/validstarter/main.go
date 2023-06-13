@@ -6,7 +6,7 @@ import (
 
 	"go.temporal.io/sdk/client"
 
-	"documentation-samples-go/sync_update"
+	"documentation-samples-go/yourupdate"
 )
 
 func main() {
@@ -18,13 +18,13 @@ func main() {
 	}
 	defer temporalClient.Close()
 	workflowOptions := client.StartWorkflowOptions{
-		ID:        sync_update.YourUpdateWFID,
-		TaskQueue: sync_update.TaskQueueName,
+		ID:        yourupdate.YourValidUpdateWFID,
+		TaskQueue: yourupdate.TaskQueueName,
 	}
-	startingCount := sync_update.WFParam{
+	startingCount := yourupdate.WFParam{
 		StartCount: 0,
 	}
-	we, err := temporalClient.ExecuteWorkflow(context.Background(), workflowOptions, sync_update.YourUpdatableWorkflow, startingCount)
+	we, err := temporalClient.ExecuteWorkflow(context.Background(), workflowOptions, yourupdate.UpdatableWorkflowWithValidator, startingCount)
 	if err != nil {
 		log.Fatalln("Unable to execute workflow", err)
 	}

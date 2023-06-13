@@ -6,7 +6,7 @@ import (
 	"go.temporal.io/sdk/client"
 	"go.temporal.io/sdk/worker"
 
-	"documentation-samples-go/sync_update"
+	"documentation-samples-go/yourupdate"
 )
 
 func main() {
@@ -17,9 +17,9 @@ func main() {
 		log.Fatalln("Unable to create client", err)
 	}
 	defer temporalClient.Close()
-	w := worker.New(temporalClient, sync_update.TaskQueueName, worker.Options{})
-	w.RegisterWorkflow(sync_update.YourUpdatableWorkflow)
-	w.RegisterWorkflow(sync_update.UpdatableWorkflowWithValidator)
+	w := worker.New(temporalClient, yourupdate.TaskQueueName, worker.Options{})
+	w.RegisterWorkflow(yourupdate.YourUpdatableWorkflow)
+	w.RegisterWorkflow(yourupdate.UpdatableWorkflowWithValidator)
 	err = w.Run(worker.InterruptCh())
 	if err != nil {
 		log.Fatalln("Unable to start worker", err)

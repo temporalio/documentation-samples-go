@@ -9,7 +9,7 @@ import (
 
 	"go.temporal.io/sdk/client"
 
-	"documentation-samples-go/sync_update"
+	"documentation-samples-go/yourupdate"
 )
 
 func main() {
@@ -29,19 +29,17 @@ func main() {
 		log.Fatalln("Unable to create client", err)
 	}
 	defer temporalClient.Close()
-	updateArg := sync_update.YourUpdateArg{
+	updateArg := yourupdate.YourUpdateArg{
 		Add: n,
 	}
-	updateHandle, err := temporalClient.UpdateWorkflow(context.Background(), sync_update.YourValidUpdateWFID, "", sync_update.YourValidatedUpdateName, updateArg)
+	updateHandle, err := temporalClient.UpdateWorkflow(context.Background(), yourupdate.YourValidUpdateWFID, "", yourupdate.YourValidatedUpdateName, updateArg)
 	if err != nil {
 		log.Fatalln("Error issuing Update request", err)
-		return
 	}
-	var updateResult sync_update.YourUpdateResult
+	var updateResult yourupdate.YourUpdateResult
 	err = updateHandle.Get(context.Background(), &updateResult)
 	if err != nil {
 		log.Fatalln("Update encountered an error", err)
-		return
 	}
 	log.Println("Update succeeded, new total: ", updateResult.Total)
 }

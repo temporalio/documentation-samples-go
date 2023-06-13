@@ -1,4 +1,4 @@
-module documentation-samples-go/sync_update
+module documentation-samples-go/yourupdate
 
 go 1.19
 

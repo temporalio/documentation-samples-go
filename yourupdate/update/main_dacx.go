@@ -9,7 +9,7 @@ import (
 
 	"go.temporal.io/sdk/client"
 
-	"documentation-samples-go/sync_update"
+	"documentation-samples-go/yourupdate"
 )
 
 /*
@@ -42,21 +42,19 @@ func main() {
 	defer temporalClient.Close()
 
 	// Set the Update argument values.
-	updateArg := sync_update.YourUpdateArg{
+	updateArg := yourupdate.YourUpdateArg{
 		Add: n,
 	}
 	// Call the UpdateWorkflow API.
-	updateHandle, err := temporalClient.UpdateWorkflow(context.Background(), sync_update.YourUpdateWFID, "", sync_update.YourUpdateName, updateArg)
+	updateHandle, err := temporalClient.UpdateWorkflow(context.Background(), yourupdate.YourUpdateWFID, "", yourupdate.YourUpdateName, updateArg)
 	if err != nil {
 		log.Fatalln("Error issuing Update request", err)
-		return
 	}
 	// Get the result of the Update.
-	var updateResult sync_update.YourUpdateResult
+	var updateResult yourupdate.YourUpdateResult
 	err = updateHandle.Get(context.Background(), &updateResult)
 	if err != nil {
 		log.Fatalln("Update encountered an error", err)
-		return
 	}
 	log.Println("Update succeeded, new total: ", updateResult.Total)
 }
@@ -66,5 +64,5 @@ id: how-to-send-an-update-from-a-client-in-go
 title: How to send an Update from a Temporal Client in Go
 label: Send Update from Client
 description: Use the UpdateWorkflow method on an instance of the Go SDK Temporal Client to send an Update to a Workflow Execution.
-lines: 15-22, 44-62
+lines: 15-22, 44-60
 @dacx */
