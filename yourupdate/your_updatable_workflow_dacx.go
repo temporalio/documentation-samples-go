@@ -146,7 +146,7 @@ func isPositive(ctx workflow.Context, u YourUpdateArg) error {
 /* @dacx
 id: how-to-define-an-update-in-go
 title: How to define an Update in Go
-label: Update type
+label: Define Update
 description: Define an Update by giving it a name to identify it.
 lines: 10-19, 69,71,80,87
 @dacx */
