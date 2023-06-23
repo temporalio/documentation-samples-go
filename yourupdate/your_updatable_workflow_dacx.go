@@ -95,6 +95,7 @@ When you use a Validator function, the Worker receives the Update first, before 
 If the Update is rejected, it's not recorded in the Event History.
 If it's accepted, the `WorkflowExecutionUpdateAccepted` Event occurs.
 Afterwards, the Worker executes the accepted Update and, upon completion, a `WorkflowExecutionUpdateCompleted` Event gets written into the Event History.
+The Validator function, unlike the Update Handler, can not change the state of the Workflow.
 
 The platform treats a panic in the Validator function as a rejection of the Update."
 */
@@ -163,5 +164,5 @@ id: how-to-set-an-update-validator-function-in-go
 title: How to set an Update validator function in go
 label: Validator function
 description: Use the SetUpdateHandlerWithOptions API and pass it a validator function to validate inputs.
-lines: 89-110, 116-122, 129-143
+lines: 90-111, 117-123, 130-144
 @dacx */
