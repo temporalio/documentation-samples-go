@@ -143,10 +143,10 @@ func isPositive(ctx workflow.Context, u YourUpdateArg) error {
 }
 
 /* @dacx
-id: how-to-define-an-update-type-in-go
-title: How to define an Update Type in Go
+id: how-to-define-an-update-in-go
+title: How to define an Update in Go
 label: Update type
-description: An Update type, also called an Update name, is a string value.
+description: Define an Update by giving it a name to identify it.
 lines: 10-19, 69,71,80,87
 @dacx */
 
