@@ -5,21 +5,21 @@ import (
 	"log"
 
 	"github.com/pborman/uuid"
+	"github.com/temporalio/documentation-samples-go/schedule"
 	"go.temporal.io/sdk/client"
-	"go.temporal.io/sdk/client/schedule"
 )
 
 func main() {
-    ctx := context.Background()
-    temporalClient, err := client.Dial(client.Options{
-        HostPort: client.DefaultHostPort,
-    })
-    if err != nil {
-        log.Fatalln("Unable to create Temporal Client", err)
-    }
-    defer temporalClient.Close()
+	ctx := context.Background()
+	temporalClient, err := client.Dial(client.Options{
+		HostPort: client.DefaultHostPort,
+	})
+	if err != nil {
+		log.Fatalln("Unable to create Temporal Client", err)
+	}
+	defer temporalClient.Close()
 
-    // Create Schedule and Workflow IDs
+	// Create Schedule and Workflow IDs
 	scheduleID := "schedule_" + uuid.New()
 	workflowID := "schedule_workflow_" + uuid.New()
 	// Create the schedule.

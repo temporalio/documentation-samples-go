@@ -1,11 +1,11 @@
-module go.temporal.io/sdk/client
+module github.com/temporalio/documentation-samples-go
 
 go 1.19
 
 require (
 	github.com/pborman/uuid v1.2.1
-	go.temporal.io/api v1.19.1-0.20230322213042-07fb271d475b
-	go.temporal.io/sdk v1.22.2
+	go.temporal.io/api v1.21.0
+	go.temporal.io/sdk v1.23.1
 )
 
 require (
@@ -21,13 +21,13 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/robfig/cron v1.2.0 // indirect
 	github.com/stretchr/objx v0.5.0 // indirect
-	github.com/stretchr/testify v1.8.2 // indirect
+	github.com/stretchr/testify v1.8.3 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
 	golang.org/x/net v0.10.0 // indirect
 	golang.org/x/sys v0.8.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
 	golang.org/x/time v0.3.0 // indirect
-	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1 // indirect
+	google.golang.org/genproto v0.0.0-20230525154841-bd750badd5c6 // indirect
 	google.golang.org/grpc v1.55.0 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

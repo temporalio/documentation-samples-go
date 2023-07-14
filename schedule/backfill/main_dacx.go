@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/pborman/uuid"
+	"github.com/temporalio/documentation-samples-go/schedule"
 	"go.temporal.io/api/enums/v1"
 	"go.temporal.io/sdk/client"
-	"go.temporal.io/sdk/client/schedule"
 )
 
 func main() {

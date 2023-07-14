@@ -4,8 +4,8 @@ import (
 	"context"
 	"log"
 
+	"github.com/temporalio/documentation-samples-go/schedule"
 	"go.temporal.io/sdk/client"
-	"go.temporal.io/sdk/client/schedule"
 )
 
 func main() {
