@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/pborman/uuid"
+	"github.com/temporalio/documentation-samples-go/schedule"
 	"go.temporal.io/api/enums/v1"
 	"go.temporal.io/sdk/client"
-	"go.temporal.io/sdk/client/schedule"
 )
 
 func main() {
@@ -17,12 +17,12 @@ func main() {
 
 	// Create a Workflow to backfill
 	temporalClient, err := client.Dial(client.Options{
-        HostPort: client.DefaultHostPort,
-    })
-    if err != nil {
-        log.Fatalln("Unable to create Temporal Client", err)
-    }
-    defer temporalClient.Close()
+		HostPort: client.DefaultHostPort,
+	})
+	if err != nil {
+		log.Fatalln("Unable to create Temporal Client", err)
+	}
+	defer temporalClient.Close()
 
 	workflowID := "schedule_workflow_" + uuid.New()
 	// create paused Workflow
@@ -47,18 +47,18 @@ func main() {
 	err = scheduleHandle.Backfill(ctx, client.ScheduleBackfillOptions{
 		Backfill: []client.ScheduleBackfill{
 			{
-				Start: now.Add(-4 * time.Minute),
-				End: now.Add(-2 * time.Minute),
+				Start:   now.Add(-4 * time.Minute),
+				End:     now.Add(-2 * time.Minute),
 				Overlap: enums.SCHEDULE_OVERLAP_POLICY_ALLOW_ALL,
 			},
 			{
-				Start: now.Add(-2 * time.Minute),
-				End: now,
+				Start:   now.Add(-2 * time.Minute),
+				End:     now,
 				Overlap: enums.SCHEDULE_OVERLAP_POLICY_ALLOW_ALL,
 			},
 		},
 	})
-		
+
 }
 
 /*

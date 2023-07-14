@@ -1,4 +1,4 @@
-module go.temporal.io/sdk/client
+module github.com/temporalio/documentation-samples-go
 
 go 1.19
 
