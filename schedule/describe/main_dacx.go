@@ -27,7 +27,6 @@ func main() {
 				"0 12 * * MON",
 			},
 		},
-		
 	})
 	// describe schedule
 	scheduleHandle.Describe(ctx)

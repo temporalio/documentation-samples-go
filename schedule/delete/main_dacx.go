@@ -4,38 +4,31 @@ import (
 	"context"
 	"log"
 
-	"github.com/pborman/uuid"
 	"go.temporal.io/sdk/client"
-	"go.temporal.io/sdk/client/schedule"
 )
 
 func main() {
 	ctx := context.Background()
-    temporalClient, err := client.Dial(client.Options{
-        HostPort: client.DefaultHostPort,
-    })
-    if err != nil {
-        log.Fatalln("Unable to create Temporal Client", err)
-    }
-    defer temporalClient.Close()
-
-    // Create Schedule and Workflow IDs
-	scheduleID := "schedule_" + uuid.New()
-	workflowID := "schedule_workflow_" + uuid.New()
-	// Create the schedule.
-	scheduleHandle, err := temporalClient.ScheduleClient().Create(ctx, client.ScheduleOptions{
-		ID:   scheduleID,
-		Spec: client.ScheduleSpec{},
-		Action: &client.ScheduleWorkflowAction{
-			ID:        workflowID,
-			Workflow:  schedule.ScheduleWorkflow,
-			TaskQueue: "schedule",
-		},
+	temporalClient, err := client.Dial(client.Options{
+		HostPort: client.DefaultHostPort,
 	})
 	if err != nil {
-		log.Fatalln("Unable to create schedule", err)
+		log.Fatalln("Unable to create Temporal Client", err)
 	}
-	scheduleHandle.Delete(ctx)	
+	defer temporalClient.Close()
+	scheduleID := "schedule_id"
+	// Retrieve the schedule handle by its ID
+	scheduleHandle := temporalClient.ScheduleClient().GetHandle(ctx, scheduleID)
+	if err != nil {
+		log.Fatalln("Unable to retrieve schedule", err)
+	}
+	defer func() {
+		log.Println("Deleting schedule", "ScheduleID", scheduleHandle.GetID())
+		err = scheduleHandle.Delete(ctx)
+		if err != nil {
+			log.Fatalln("Unable to delete schedule", err)
+		}
+	}()
 }
 
 /*
@@ -49,6 +42,6 @@ To delete a Schedule, use `Delete()` on the `ScheduleHandle`.
 id: how-to-delete-a-schedule-in-go
 title: How to delete a Schedule in Go
 label: Delete Schedule
-description: 
-lines: 12, 38-39, 41-46
+description:
+lines: 10, 27, 32, 34-39
 @dacx */

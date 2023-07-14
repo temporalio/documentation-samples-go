@@ -4,24 +4,23 @@ import (
 	"context"
 	"log"
 
-	"github.com/pborman/uuid"
 	"go.temporal.io/sdk/client"
 	"go.temporal.io/sdk/client/schedule"
 )
 
 func main() {
-    ctx := context.Background()
-    temporalClient, err := client.Dial(client.Options{
-        HostPort: client.DefaultHostPort,
-    })
-    if err != nil {
-        log.Fatalln("Unable to create Temporal Client", err)
-    }
-    defer temporalClient.Close()
+	ctx := context.Background()
+	temporalClient, err := client.Dial(client.Options{
+		HostPort: client.DefaultHostPort,
+	})
+	if err != nil {
+		log.Fatalln("Unable to create Temporal Client", err)
+	}
+	defer temporalClient.Close()
 
-    // Create Schedule and Workflow IDs
-	scheduleID := "schedule_" + uuid.New()
-	workflowID := "schedule_workflow_" + uuid.New()
+	// Create Schedule and Workflow IDs
+	scheduleID := "schedule_id"
+	workflowID := "schedule_workflow_id"
 	// Create the schedule.
 	scheduleHandle, err := temporalClient.ScheduleClient().Create(ctx, client.ScheduleOptions{
 		ID:   scheduleID,
@@ -35,7 +34,7 @@ func main() {
 	if err != nil {
 		log.Fatalln("Unable to create schedule", err)
 	}
-    log.Println("Schedule created", "ScheduleID", scheduleID)
+	log.Println("Schedule created", "ScheduleID", scheduleID)
 	_, _ = scheduleHandle.Describe(ctx)
 }
 
@@ -52,5 +51,5 @@ id: how-to-create-a-schedule-in-go
 title: How to create a Schedule in Go
 label: Create Schedule
 description: Create a Schedule for a Workflow in Go.
-lines: 12, 22-34, 41, 42-48
+lines: 11, 21-33, 39, 41-47
 @dacx */
