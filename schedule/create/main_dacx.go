@@ -4,8 +4,9 @@ import (
 	"context"
 	"log"
 
+	"github.com/pborman/uuid"
+	"github.com/temporalio/documentation-samples-go/schedule"
 	"go.temporal.io/sdk/client"
-	"go.temporal.io/sdk/client/schedule"
 )
 
 func main() {
@@ -51,5 +52,5 @@ id: how-to-create-a-schedule-in-go
 title: How to create a Schedule in Go
 label: Create Schedule
 description: Create a Schedule for a Workflow in Go.
-lines: 11, 21-33, 39, 41-47
+lines: 12, 22-34, 41, 42-48
 @dacx */

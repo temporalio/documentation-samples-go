@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 
+	"github.com/temporalio/documentation-samples-go/schedule"
 	"go.temporal.io/sdk/client"
-	"go.temporal.io/sdk/client/schedule"
 	"go.temporal.io/sdk/worker"
 )
 
