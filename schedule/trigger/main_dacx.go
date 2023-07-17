@@ -24,10 +24,10 @@ func main() {
 
 	// Create a Schedule to trigger
 	scheduleHandle, _ := temporalClient.ScheduleClient().Create(ctx, client.ScheduleOptions{
-		ID: "trigger-schedule",
-		Spec: client.ScheduleSpec{},
-		Action: &client.ScheduleWorkflowAction{},
-		Paused: true,
+		ID:      "trigger-schedule",
+		Spec:    client.ScheduleSpec{},
+		Action:  &client.ScheduleWorkflowAction{},
+		Paused:  true,
 		Overlap: enums.SCHEDULE_OVERLAP_POLICY_ALLOW_ALL,
 	})
 
@@ -52,5 +52,5 @@ id: how-to-trigger-a-schedule-in-go
 title: How to trigger a Schedule in Go
 label: Trigger Schedule
 description: Immediately execute an Action in a Schedule.
-lines: 12, 25-32, 34-41, 43-48 
+lines: 12, 25-32, 34-41, 43-48
 @dacx */

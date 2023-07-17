@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
+	"time"
 
-	"github.com/pborman/uuid"
-	"github.com/temporalio/documentation-samples-go/schedule"
 	"go.temporal.io/sdk/client"
 )
 
@@ -19,30 +19,33 @@ func main() {
 	}
 	defer temporalClient.Close()
 
-	// Create Schedule and Workflow IDs
-	scheduleID := "schedule_" + uuid.New()
-	workflowID := "schedule_workflow_" + uuid.New()
-	// Create the schedule.
-	scheduleHandle, err := temporalClient.ScheduleClient().Create(ctx, client.ScheduleOptions{
-		ID:   scheduleID,
-		Spec: client.ScheduleSpec{},
-		Action: &client.ScheduleWorkflowAction{
-			ID:        workflowID,
-			Workflow:  schedule.ScheduleWorkflow,
-			TaskQueue: "schedule",
-		},
-		Paused: true,
-	})
-	if err != nil {
-		log.Fatalln("Unable to create schedule", err)
+	// Retrieve the already existing schedule
+	scheduleID := "schedule_id"
+	scheduleHandle := temporalClient.ScheduleClient().GetHandle(ctx, scheduleID)
+	if scheduleHandle == nil {
+		log.Fatalln("Unable to retrieve schedule")
 	}
 
-	scheduleHandle.Unpause(ctx, client.ScheduleUnpauseOptions{
-		Note: "The Schedule has been unpaused.",
-	})
-	scheduleHandle.Pause(ctx, client.SchedulePauseOptions{
+	// Pause the schedule and print the status
+	err = scheduleHandle.Pause(ctx, client.SchedulePauseOptions{
 		Note: "The Schedule has been paused.",
 	})
+	if err != nil {
+		log.Fatalln("Unable to pause schedule", err)
+	}
+	fmt.Println("The Schedule has been paused.")
+
+	// Wait for 5 seconds
+	time.Sleep(5 * time.Second)
+
+	// Unpause the schedule
+	err = scheduleHandle.Unpause(ctx, client.ScheduleUnpauseOptions{
+		Note: "The Schedule has been unpaused.",
+	})
+	if err != nil {
+		log.Fatalln("Unable to unpause schedule", err)
+	}
+	fmt.Println("The Schedule has been unpaused.")
 }
 
 /*
@@ -60,5 +63,5 @@ id: how-to-pause-a-schedule-in-go
 title: How to pause a Schedule in Go
 label: Pause Schedule
 description: Show how to unpause and pause a Schedule in Go.
-lines: 12, 26, 34-35, 40-46, 48-56
+lines: 12, 51-59, 30-32, 42-44
 @dacx */

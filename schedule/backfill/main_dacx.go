@@ -5,7 +5,6 @@ import (
 	"log"
 	"time"
 
-	"github.com/pborman/uuid"
 	"github.com/temporalio/documentation-samples-go/schedule"
 	"go.temporal.io/api/enums/v1"
 	"go.temporal.io/sdk/client"
@@ -24,7 +23,7 @@ func main() {
 	}
 	defer temporalClient.Close()
 
-	workflowID := "schedule_workflow_" + uuid.New()
+	workflowID := "schedule_workflow_"
 	// create paused Workflow
 	now := time.Now()
 	scheduleHandle, _ := temporalClient.ScheduleClient().Create(ctx, client.ScheduleOptions{
@@ -58,6 +57,9 @@ func main() {
 			},
 		},
 	})
+	if err != nil {
+		log.Fatalln("Unable to Backfill Schedule", err)
+	}
 
 }
 
