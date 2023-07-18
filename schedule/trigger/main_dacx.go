@@ -51,6 +51,6 @@ To trigger a Scheduled Workflow Execution, use `trigger()` on `ScheduleHandle`.
 id: how-to-trigger-a-schedule-in-go
 title: How to trigger a Schedule in Go
 label: Trigger Schedule
-description: Immediately execute an Action in a Schedule.
-lines: 12, 25-32, 34-41, 43-48
+description: To trigger a Schedule in Go, use `trigger()` on `ScheduleHandle`.
+lines: 12, 35-40, 43-48
 @dacx */

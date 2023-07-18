@@ -42,6 +42,6 @@ To delete a Schedule, use `Delete()` on the `ScheduleHandle`.
 id: how-to-delete-a-schedule-in-go
 title: How to delete a Schedule in Go
 label: Delete Schedule
-description:
-lines: 10, 27, 32, 34-39
+description: To delete a Schedule, use `Delete()` on the `ScheduleHandle`.
+lines: 10, 25-31, 34-39
 @dacx */

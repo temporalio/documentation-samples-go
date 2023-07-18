@@ -50,6 +50,6 @@ Schedules must be initialized with a Schedule ID, [Spec](/concepts/what-is-a-sch
 id: how-to-create-a-schedule-in-go
 title: How to create a Schedule in Go
 label: Create Schedule
-description: Create a Schedule for a Workflow in Go.
+description: To create a Schedule in Go, use `Create()` on the Client.
 lines: 11, 21-33, 39, 41-47
 @dacx */

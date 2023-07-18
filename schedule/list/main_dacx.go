@@ -56,6 +56,6 @@ To return information on all Schedules, use `ScheduleClient.List()`.
 id: how-to-list-a-schedule-in-go
 title: How to list a Schedule in Go
 label: List Schedules
-description: List all Schedules in a Namespace in Go.
-lines: 12, 39-42, 47, 49-53
+description: To list all Schedules in Go, use `ScheduleClient.List()`.
+lines: 12, 40-46, 49-53
 @dacx */
