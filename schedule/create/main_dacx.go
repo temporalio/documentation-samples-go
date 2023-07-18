@@ -51,5 +51,5 @@ id: how-to-create-a-schedule-in-go
 title: How to create a Schedule in Go
 label: Create Schedule
 description: To create a Schedule in Go, use `Create()` on the Client.
-lines: 11, 21-33, 39, 41-47
+lines: 11, 22-33, 39, 41-47
 @dacx */
