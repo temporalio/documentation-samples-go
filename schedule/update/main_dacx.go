@@ -20,15 +20,15 @@ func main() {
 	defer temporalClient.Close()
 
 	scheduleHandle, _ := temporalClient.ScheduleClient().Create(ctx, client.ScheduleOptions{
-		ID: "update-schedule",
-		Spec: client.ScheduleSpec{},
+		ID:     "update-schedule",
+		Spec:   client.ScheduleSpec{},
 		Action: &client.ScheduleWorkflowAction{},
 		Paused: true,
 	})
 
 	updateSchedule := func(input client.ScheduleUpdateInput) (*client.ScheduleUpdate, error) {
 		return &client.ScheduleUpdate{
-			Schedule:  &input.Description.Schedule,
+			Schedule: &input.Description.Schedule,
 		}, nil
 	}
 
@@ -48,6 +48,6 @@ Use `Update()` on the ScheduleHandle to modify a Schedule.
 id: how-to-update-a-schedule-in-go
 title: How to update a Schedule in Go
 label: Update Schedule
-description: Update the configuration of a Schedule.
+description: To update a Schedule in Go, use `updateSchedule()` on the ScheduleHandle.
 lines: 10, 29-38, 40-45
 @dacx */

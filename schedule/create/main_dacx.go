@@ -4,7 +4,6 @@ import (
 	"context"
 	"log"
 
-	"github.com/pborman/uuid"
 	"github.com/temporalio/documentation-samples-go/schedule"
 	"go.temporal.io/sdk/client"
 )
@@ -20,8 +19,8 @@ func main() {
 	defer temporalClient.Close()
 
 	// Create Schedule and Workflow IDs
-	scheduleID := "schedule_" + uuid.New()
-	workflowID := "schedule_workflow_" + uuid.New()
+	scheduleID := "schedule_id"
+	workflowID := "schedule_workflow_id"
 	// Create the schedule.
 	scheduleHandle, err := temporalClient.ScheduleClient().Create(ctx, client.ScheduleOptions{
 		ID:   scheduleID,
@@ -51,6 +50,6 @@ Schedules must be initialized with a Schedule ID, [Spec](/concepts/what-is-a-sch
 id: how-to-create-a-schedule-in-go
 title: How to create a Schedule in Go
 label: Create Schedule
-description: Create a Schedule for a Workflow in Go.
-lines: 12, 22-34, 41, 42-48
+description: To create a Schedule in Go, use `Create()` on the Client.
+lines: 11, 22-33, 39, 41-47
 @dacx */

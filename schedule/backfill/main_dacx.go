@@ -5,7 +5,6 @@ import (
 	"log"
 	"time"
 
-	"github.com/pborman/uuid"
 	"github.com/temporalio/documentation-samples-go/schedule"
 	"go.temporal.io/api/enums/v1"
 	"go.temporal.io/sdk/client"
@@ -24,7 +23,7 @@ func main() {
 	}
 	defer temporalClient.Close()
 
-	workflowID := "schedule_workflow_" + uuid.New()
+	workflowID := "schedule_workflow_"
 	// create paused Workflow
 	now := time.Now()
 	scheduleHandle, _ := temporalClient.ScheduleClient().Create(ctx, client.ScheduleOptions{
@@ -58,6 +57,9 @@ func main() {
 			},
 		},
 	})
+	if err != nil {
+		log.Fatalln("Unable to Backfill Schedule", err)
+	}
 
 }
 
@@ -73,6 +75,6 @@ Specify the start and end times to execute the Workflow, along with the overlap 
 id: how-to-backfill-a-schedule-in-go
 title: How to backfill a Schedule in Go
 label: Backfill Schedule
-description: Backfill a Schedule to execute a Workflow at a later time.
-lines: 14, 48-61, 63, 64-70
+description: To backfill a Schedule in Go, use `Backfill()` on `ScheduleHandle`.
+lines: 13, 46-62, 64, 66-72
 @dacx */
