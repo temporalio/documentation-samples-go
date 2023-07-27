@@ -76,9 +76,6 @@ id: how-to-backfill-a-schedule-in-go
 title: How to backfill a Schedule in Go
 label: Backfill Schedule
 description: To backfill a Schedule in Go, use `Backfill()` on `ScheduleHandle`.
-tags: 
-	- go-sdk
-	- code-sample
-	- schedule
+tags: go sdk, code sample, schedule, backfill
 lines: 13, 46-62, 64, 66-72
 @dacx */

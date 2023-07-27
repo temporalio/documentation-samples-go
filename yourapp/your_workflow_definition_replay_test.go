@@ -80,9 +80,7 @@ package yourapp
 // title: How to replay a Workflow Execution in Go
 // sidebar_label: WorkflowReplayer
 // description: Use the `WorkflowReplayer` API to replay an existing Workflow Execution from an Event History to replicate errors.
-// tags:
-//   - go
-//   - how-to
+// tags: go sdk, code sample, workflow, replay
 // ---
 
 
