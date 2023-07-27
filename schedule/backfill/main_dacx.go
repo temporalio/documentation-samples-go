@@ -79,6 +79,6 @@ description: To backfill a Schedule in Go, use `Backfill()` on `ScheduleHandle`.
 tags: 
 	- go-sdk
 	- code-sample
-	- schedules
+	- schedule
 lines: 13, 46-62, 64, 66-72
 @dacx */
