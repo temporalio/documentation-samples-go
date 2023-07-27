@@ -51,6 +51,7 @@ id: how-to-enable-sessions-on-a-worker
 title: How to enable Sessions on a Worker
 label: Enable Sessions
 description: Set EnableSessionWorker to true in the Worker options.
+tags: go sdk, code sample
 lines: 12-14, 16, 25-27, 31-35, 39
 @dacx */
 
@@ -59,5 +60,6 @@ id: how-to-configure-max-concurrent-sessions
 title: How to configure the maximum concurrent Sessions on the Worker
 label: Max concurrent Sessions
 description: Set MaxConcurrentSessionExecutionSize in the Worker options.
+tags: go sdk, code sample
 lines: 16, 26, 28-30, 39, 41-47
 @dacx */

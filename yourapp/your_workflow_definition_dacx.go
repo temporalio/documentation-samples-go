@@ -139,6 +139,7 @@ id: how-to-develop-a-workflow-definition-in-go
 title: How to develop a Workflow Definition in Go
 label: Workflow Definition
 description: In the Temporal Go SDK programming model, a Workflow Definition is an exportable function.
+tags: go sdk, code sample
 lines: 1-7, 42-51
 @dacx */
 
@@ -147,6 +148,7 @@ id: how-to-define-workflow-parameters-in-go
 title: How to define Workflow parameters in Go
 label: Workflow parameters
 description: A Go-based Workflow Definition must accept workflow.Context and may support multiple custom parameters.
+tags: go sdk, code sample
 lines:  1-29, 53-54, 105
 @dacx */
 
@@ -155,6 +157,7 @@ id: how-to-define-workflow-return-values-in-go
 title: How to define Workflow return values in Go
 label: Workflow return values
 description: A Go-based Workflow Definition can return either just an error or a customValue, error combination.
+tags: go sdk, code sample
 lines: 1-7, 31-40, 53-54, 96-112
 @dacx */
 
@@ -163,6 +166,7 @@ id: how-to-handle-workflow-logic-requirements-in-go
 title: How to handle Workflow logic requirements in Go
 label: Workflow logic requirements
 description: In Go, Workflow Definition code cannot directly do a few things to adhere to deterministic constraints.
+tags: go sdk, code sample
 lines: 114-135
 @dacx */
 
@@ -171,5 +175,6 @@ id: how-to-spawn-an-activity-execution-in-go
 title: How to spawn an Activity Execution in Go
 label: Activity Execution
 description: Use the ExecuteActivity() API call available from the go.temporal.io/sdk/workflow package.
+tags: go sdk, code sample
 lines: 54-83, 105
 @dacx */
