@@ -87,6 +87,9 @@ id: how-to-create-a-session-from-the-workflow-in-go
 title: How to create a Worker Session in Go
 label: Worker Session
 description: Enable Sessions on the Worker via the Worker Options and then use the `CreateSession` API to create a Context object that can be passed to the calls to spawn Activity Executions.
-tags: go sdk, code sample
+tags: 
+	- go-sdk
+	- code-sample
+	- sessions
 lines: 1-16, 22-27, 38-47, 51, 57, 62, 64-82
 @dacx */
