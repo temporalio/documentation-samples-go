@@ -54,6 +54,6 @@ description: To create a Schedule in Go, use `Create()` on the Client.
 tags: 
 	- go-sdk
 	- code-sample
-	- schedules
+	- schedule
 lines: 11, 22-33, 39, 41-47
 @dacx */
