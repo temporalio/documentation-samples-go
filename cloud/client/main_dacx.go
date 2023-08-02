@@ -81,5 +81,6 @@ id: how-to-connect-to-temporal-cloud-in-go
 title: How to connect to Temporal Cloud 
 label: Connect to Temporal Cloud
 description: Use a certificate key pair and your Temporal Cloud Namespace to connect to Temporal Cloud.
+tags: go sdk, code sample, temporal cloud
 lines: 1-51, 77
 @dacx */

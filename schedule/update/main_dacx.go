@@ -49,5 +49,6 @@ id: how-to-update-a-schedule-in-go
 title: How to update a Schedule in Go
 label: Update Schedule
 description: To update a Schedule in Go, use `updateSchedule()` on the ScheduleHandle.
+tags: go sdk, code sample, schedule, update
 lines: 10, 29-38, 40-45
 @dacx */
