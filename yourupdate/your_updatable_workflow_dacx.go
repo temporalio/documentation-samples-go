@@ -148,7 +148,11 @@ id: how-to-define-an-update-in-go
 title: How to define an Update in Go
 label: Define Update
 description: Define an Update by giving it a name to identify it.
-tags: go sdk, code sample, workflow, update
+tags:
+- go sdk
+- code sample
+- workflow
+- update
 lines: 10-19, 69,71,80,87
 @dacx */
 
@@ -157,7 +161,11 @@ id: how-to-handle-an-update-in-go
 title: How to handle an Update in Go
 label: Handle Update
 description: Use the SetUpateHandler API from the go.temporal.io/sdk/workflow package to register an Update Handler for a given name.
-tags: go sdk, code sample, workflow, update
+tags:
+- go sdk
+- code sample
+- workflow
+- update
 lines: 53-64, 69-77, 87
 @dacx */
 
@@ -166,6 +174,10 @@ id: how-to-set-an-update-validator-function-in-go
 title: How to set an Update validator function in go
 label: Validator function
 description: Use the SetUpdateHandlerWithOptions API and pass it a validator function to validate inputs.
-tags: go sdk, code sample, workflow, update
-lines: 90-111, 117-123, 130-144
+tags:
+- go sdk
+- code sample
+- workflow
+- update
+lines: 89-111, 117-123, 130-144
 @dacx */

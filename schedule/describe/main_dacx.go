@@ -44,6 +44,10 @@ id: how-to-describe-a-schedule-in-go
 title: How to describe a Schedule in Go
 label: Describe Schedule
 description: To describe a Schedule in Go, use `Describe()` on the ScheduleHandle.
-tags: go sdk, code sample, schedule, describe
+tags:
+- go sdk
+- code sample
+- schedule
+- describe
 lines: 10, 32, 35-40
 @dacx */

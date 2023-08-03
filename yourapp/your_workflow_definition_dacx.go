@@ -51,12 +51,12 @@ func YourSimpleWorkflowDefinition(ctx workflow.Context) error {
 }
 
 // YourWorkflowDefinition is your custom Workflow Definition.
-func YourWorkflowDefinition(ctx workflow.Context, param YourWorkflowParam) (*YourWorkflowResultObject, error) {	
-/*
-To spawn an [Activity Execution](/concepts/what-is-an-activity-execution), call [`ExecuteActivity()`](https://pkg.go.dev/go.temporal.io/workflow#ExecuteActivity) inside your Workflow Definition.
-The API is available from the [`go.temporal.io/sdk/workflow`](https://pkg.go.dev/go.temporal.io/workflow) package.
-The `ExecuteActivity()` API call requires an instance of `workflow.Context`, the Activity function name, and any variables to be passed to the Activity Execution.
-*/	
+func YourWorkflowDefinition(ctx workflow.Context, param YourWorkflowParam) (*YourWorkflowResultObject, error) {
+	/*
+	   To spawn an [Activity Execution](/concepts/what-is-an-activity-execution), call [`ExecuteActivity()`](https://pkg.go.dev/go.temporal.io/workflow#ExecuteActivity) inside your Workflow Definition.
+	   The API is available from the [`go.temporal.io/sdk/workflow`](https://pkg.go.dev/go.temporal.io/workflow) package.
+	   The `ExecuteActivity()` API call requires an instance of `workflow.Context`, the Activity function name, and any variables to be passed to the Activity Execution.
+	*/
 	// Set the options for the Activity Execution.
 	// Either StartToClose Timeout OR ScheduleToClose is required.
 	// Not specifying a Task Queue will default to the parent Workflow Task Queue.
@@ -72,11 +72,11 @@ The `ExecuteActivity()` API call requires an instance of `workflow.Context`, the
 	var a *YourActivityObject
 	// Execute the Activity and wait for the result.
 	var activityResult *YourActivityResultObject
-/*
-	The Activity function name can be provided as a variable object (no quotations) or as a string.
-    The benefit of passing the actual function object is that the framework can validate the parameters against the Activity Definition.
-    The `ExecuteActivity` call returns a Future, which can be used to get the result of the Activity Execution.
-*/
+	/*
+	   	The Activity function name can be provided as a variable object (no quotations) or as a string.
+	       The benefit of passing the actual function object is that the framework can validate the parameters against the Activity Definition.
+	       The `ExecuteActivity` call returns a Future, which can be used to get the result of the Activity Execution.
+	*/
 	err := workflow.ExecuteActivity(ctx, a.YourActivityDefinition, activityParam).Get(ctx, &activityResult)
 	if err != nil {
 		return nil, err
@@ -139,7 +139,10 @@ id: how-to-develop-a-workflow-definition-in-go
 title: How to develop a Workflow Definition in Go
 label: Workflow Definition
 description: In the Temporal Go SDK programming model, a Workflow Definition is an exportable function.
-tags: go sdk, code sample, workflow
+tags:
+- go sdk
+- code sample
+- workflow
 lines: 1-7, 42-51
 @dacx */
 
@@ -148,7 +151,10 @@ id: how-to-define-workflow-parameters-in-go
 title: How to define Workflow parameters in Go
 label: Workflow parameters
 description: A Go-based Workflow Definition must accept workflow.Context and may support multiple custom parameters.
-tags: go sdk, code sample, workflow
+tags:
+- go sdk
+- code sample
+- workflow
 lines:  1-29, 53-54, 105
 @dacx */
 
@@ -157,7 +163,10 @@ id: how-to-define-workflow-return-values-in-go
 title: How to define Workflow return values in Go
 label: Workflow return values
 description: A Go-based Workflow Definition can return either just an error or a customValue, error combination.
-tags: go sdk, code sample, workflow
+tags:
+- go sdk
+- code sample
+- workflow
 lines: 1-7, 31-40, 53-54, 96-112
 @dacx */
 
@@ -166,7 +175,10 @@ id: how-to-handle-workflow-logic-requirements-in-go
 title: How to handle Workflow logic requirements in Go
 label: Workflow logic requirements
 description: In Go, Workflow Definition code cannot directly do a few things to adhere to deterministic constraints.
-tags: go sdk, code sample, workflow
+tags:
+- go sdk
+- code sample
+- workflow
 lines: 114-135
 @dacx */
 
@@ -175,6 +187,9 @@ id: how-to-spawn-an-activity-execution-in-go
 title: How to spawn an Activity Execution in Go
 label: Activity Execution
 description: Use the ExecuteActivity() API call available from the go.temporal.io/sdk/workflow package.
-tags: go sdk, code sample, workflow
+tags:
+- go sdk
+- code sample
+- workflow
 lines: 54-83, 105
 @dacx */
