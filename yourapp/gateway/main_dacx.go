@@ -69,14 +69,14 @@ func startWorkflowHandler(w http.ResponseWriter, r *http.Request, temporalClient
 	var result yourapp.YourWorkflowResultObject
 	workflowExecution.Get(context.Background(), &result)
 	if err != nil {
-        log.Fatalln("Unable to get Workflow result:", err)
-    }
+		log.Fatalln("Unable to get Workflow result:", err)
+	}
 	b, err := json.Marshal(result)
-    if err != nil {
-        log.Fatalln(err)
-        return
-    }
-    log.Println(string(b))
+	if err != nil {
+		log.Fatalln(err)
+		return
+	}
+	log.Println(string(b))
 }
 
 /* @dacx
@@ -84,6 +84,9 @@ id: how-to-connect-to-a-development-cluster-in-go
 title: How to connect to a Temporal dev Cluster in Go
 label: Connect to a dev Cluster
 description: Use the Dial() method on the Temporal Client and omit setting any client options. If there is a local dev Cluster running, the Client will connect to it.
-tags: go sdk, code sample, cluster
+tags:
+- go sdk
+- code sample
+- cluster
 lines: 1-31, 40
 @dacx */

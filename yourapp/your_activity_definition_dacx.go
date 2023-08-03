@@ -48,7 +48,7 @@ func YourSimpleActivityDefinition(ctx context.Context) error {
 // If the Worker crashes this Activity object loses its state.
 type YourActivityObject struct {
 	Message *string
-	Number *int
+	Number  *int
 }
 
 // YourActivityDefinition is your custom Activity Definition.
@@ -90,7 +90,7 @@ func (a *YourActivityObject) PrintInfo(ctx context.Context, param YourActivityPa
 }
 
 // GetInfo is another custom Activity Definition
-func (a *YourActivityObject) GetInfo(ctx context.Context ) (*YourActivityResultObject, error){
+func (a *YourActivityObject) GetInfo(ctx context.Context) (*YourActivityResultObject, error) {
 	return &YourActivityResultObject{
 		ResultFieldX: *a.Message,
 		ResultFieldY: *a.Number,
@@ -102,7 +102,10 @@ id: how-to-develop-an-activity-definition-in-go
 title: How to develop an Activity Definition in Go
 label: Activity Definition
 description: In the Temporal Go SDK programming model, an Activity Definition is an exportable function or a `struct` method.
-tags: go sdk, code sample, activity
+tags:
+- go sdk
+- code sample
+- activity
 lines: 1-7, 37-56, 70-82
 @dacx */
 
@@ -111,7 +114,10 @@ id: how-to-define-activity-parameters-in-go
 title: How to define Activity parameters in Go
 label: Activity parameters
 description: The only required parameter is `context.Context`, but Activities can support many custom parameters.
-tags: go sdk, code sample, activity
+tags:
+- go sdk
+- code sample
+- activity
 lines: 9-22, 56, 70
 @dacx */
 
@@ -120,6 +126,9 @@ id: how-to-define-activity-return-values-in-go
 title: How to define Activity return values in Go
 label: Activity return values
 description: A Go-based Activity Definition can return either just an `error` or a `customValue, error` combination.
-tags: go sdk, code sample, activity
+tags:
+- go sdk
+- code sample
+- activity
 lines: 24-35, 56, 63-70
 @dacx */
