@@ -51,7 +51,7 @@ func main() {
 }
 
 /* @dacx
-id: run-a-worker-process
+id: backgroundcheck-boilerplate-cloud-worker
 title: Run a dev server Worker
 description: Define the code needed to run a Worker Process in Go.
 label: Dev server Worker
