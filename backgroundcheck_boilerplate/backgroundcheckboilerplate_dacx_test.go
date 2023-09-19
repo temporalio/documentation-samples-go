@@ -15,6 +15,7 @@ Each Temporal SDK has a testing suite that can be used in conjunction with a typ
 In the Temporal Go SDK, the `testsuite` package (https://pkg.go.dev/go.temporal.io/sdk/testsuite)  provides a test environment in which the Workflow and Activity code may be run for test purposes.
 */
 
+// UnitTestSuite is a struct that wraps around the testing suites
 type UnitTestSuite struct {
 	// Add testify test suite package
 	suite.Suite
@@ -108,7 +109,7 @@ id: backgroundcheck-boilerplate-add-test-framework
 title: Add a testing framework
 description: How to add a testing framework to your Temporal Application.
 label: Test framework
-lines: 1-23, 30-34
+lines: 1-24, 31-35
 tags:
 - testing
 - developer guide
@@ -121,7 +122,7 @@ id: backgroundcheck-boilerplate-add-test-framework-details
 title: Add a testing framework details
 description: How to add a testing framework to your Temporal Application.
 label: Test framework details
-lines: 25-28
+lines: 26-29
 tags:
 - testing
 - developer guide
@@ -138,7 +139,7 @@ tags:
 - testing
 - developer guide
 - go sdk
-lines: 36-67
+lines: 37-68
 @dacx */
 
 /* @dacx
@@ -150,7 +151,7 @@ tags:
 - testing
 - developer guide
 - go sdk
-lines: 69-79
+lines: 70-80
 @dacx */
 
 /* @dacx
@@ -158,7 +159,7 @@ id: backgroundcheck-boilerplate-add-activity-tests
 title: Add Activity function tests
 description: How to test Activity code
 label: Test Activity code
-lines: 84-104
+lines: 85-105
 tags:
 - testing
 - developer guide
