@@ -29,6 +29,9 @@ id: backgroundcheck-boilerplate-ssntrace
 title: Boilerplate Activity code
 label: Activity code
 description: In the Temporal Go SDK programming model, an Activity Definition is an exportable function or a `struct` method.
-tags: go sdk, code sample, activity
+tags:
+- go sdk
+- code sample
+- activity
 lines: 1-25
 @dacx */
