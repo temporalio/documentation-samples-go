@@ -13,8 +13,10 @@ import (
 
 Each Temporal SDK has a testing suite that can be used in conjunction with a typical language specific testing framework.
 In the Temporal Go SDK, the `testsuite` package (https://pkg.go.dev/go.temporal.io/sdk/testsuite)  provides a test environment in which the Workflow and Activity code may be run for test purposes.
+*/
 
-In this example, we will use a custom struct that absorbs both the testing functionality from testify (https://pkg.go.dev/github.com/stretchr/testify/suite) via `suite.Suite` and the testing functionality from the Temporal test framework via `testsuite.WorkflowTestSuite`.
+/*
+In this example, we use a custom struct that absorbs both the testing functionality from testify (https://pkg.go.dev/github.com/stretchr/testify/suite) via `suite.Suite` and the testing functionality from the Temporal test framework via `testsuite.WorkflowTestSuite`.
 */
 
 type UnitTestSuite struct {
@@ -109,7 +111,20 @@ id: backgroundcheck-boilerplate-add-test-framework
 title: Add a testing framework
 description: How to add a testing framework to your Temporal Application.
 label: Test framework
-lines: 1-35
+lines: 1-16, 22-27, 33-37
+tags:
+- testing
+- developer guide
+- test framework
+- go sdk
+@dacx */
+
+/* @dacx
+id: backgroundcheck-boilerplate-add-test-framework-details
+title: Add a testing framework details
+description: How to add a testing framework to your Temporal Application.
+label: Test framework details
+lines: 18-20, 29-31
 tags:
 - testing
 - developer guide
@@ -126,7 +141,7 @@ tags:
 - testing
 - developer guide
 - go sdk
-lines: 37-68
+lines: 39-70
 @dacx */
 
 /* @dacx
@@ -138,7 +153,7 @@ tags:
 - testing
 - developer guide
 - go sdk
-lines: 70-80
+lines: 72-82
 @dacx */
 
 /* @dacx
@@ -146,7 +161,7 @@ id: backgroundcheck-boilerplate-add-activity-tests
 title: Add Activity function tests
 description: How to test Activity code
 label: Test Activity code
-lines: 82-105
+lines: 84-107
 tags:
 - testing
 - developer guide
