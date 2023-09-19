@@ -56,5 +56,8 @@ title: Run a dev server Worker
 description: Define the code needed to run a Worker Process in Go.
 label: Dev server Worker
 lines: 1-51
-tags: worker, developer guide, temporal client
+tags:
+- worker
+- developer guide
+- temporal client
 @dacx */

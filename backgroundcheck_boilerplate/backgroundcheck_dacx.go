@@ -57,6 +57,9 @@ id: backgroundcheck-boilerplate-backgroundcheck-workflow
 title: Boilerplate Workflow code
 label: Workflow code
 description: In the Temporal Go SDK programming model, an Activity Definition is an exportable function or a `struct` method.
-tags: go sdk, developer guide, code sample
+tags:
+- go sdk
+- developer guide
+- code sample
 lines: 1-47
 @dacx */

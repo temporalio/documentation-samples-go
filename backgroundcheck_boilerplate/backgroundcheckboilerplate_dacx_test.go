@@ -109,8 +109,12 @@ id: backgroundcheck-boilerplate-add-test-framework
 title: Add a testing framework
 description: How to add a testing framework to your Temporal Application.
 label: Test framework
-tags: testing, developer guide, test framework, go sdk
 lines: 1-35
+tags:
+- testing
+- developer guide
+- test framework
+- go sdk
 @dacx */
 
 /* @dacx
@@ -118,7 +122,10 @@ id: backgroundcheck-boilerplate-add-workflow-tests
 title: Add Workflow function tests
 description: How to test Workflow code
 label: Test Workflow code
-tags: testing, developer guide, go sdk
+tags:
+- testing
+- developer guide
+- go sdk
 lines: 37-80
 @dacx */
 
@@ -128,5 +135,8 @@ title: Add Activity function tests
 description: How to test Activity code
 label: Test Activity code
 lines: 82-105
-tags: testing, developer guide, go sdk
+tags:
+- testing
+- developer guide
+- go sdk
 @dacx */
