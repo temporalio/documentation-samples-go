@@ -1,8 +1,9 @@
-module documentation-samples-go/backgroundcheckboilerplate
+module documentation-samples-go/backgroundcheck_boilerplate
 
 go 1.19
 
 require (
+	github.com/joho/godotenv v1.5.1
 	github.com/stretchr/testify v1.8.4
 	go.temporal.io/sdk v1.24.0
 )

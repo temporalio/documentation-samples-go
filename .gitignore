@@ -16,3 +16,6 @@
 
 # Local secrets to connect to Cloud
 cloud/secrets
+
+# Environment variable files
+.env
