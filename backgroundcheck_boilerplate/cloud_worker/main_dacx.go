@@ -53,7 +53,7 @@ func main() {
 	}
 	defer temporalClient.Close()
 	// Create a new Worker
-	yourWorker := worker.New(temporalClient, "backgroundcheck-boilerplate-task-queue", worker.Options{})
+	yourWorker := worker.New(temporalClient, "backgroundcheck-boilerplate-task-queue-cloud", worker.Options{})
 	// Register Workflows
 	yourWorker.RegisterWorkflow(backgroundcheck_boilerplate.BackgroundCheck)
 	// Register Acivities
@@ -80,11 +80,22 @@ There is an option to copy the grPC endpoint address from the Temporal Cloud UI.
 id: backgroundcheck-boilerplate-cloud-worker
 title: Run a Temporal Cloud Worker
 description: Provide your Namespace, Address, and certificate key pair to connect to Temporal Cloud.
-label: Dev server Worker
-lines: 16-24, 30-50, 66-77
+label: Cloud Worker
+lines: 16-24, 30-50, 66
 tags:
 - worker
 - temporal cloud
 - developer guide
 - temporal client
+@dacx */
+
+/* @dacx
+id: backgroundcheck-boilerplate-cloud-worker-details
+title: Cloud Worker details
+description: When specifying the Temporal Cloud Namespace, make sure to append the Account Id as it appears in the url of the Cloud UI.
+label: Cloud Worker details
+lines: 68-77
+tags:
+- worker
+- cloud certificate
 @dacx */
