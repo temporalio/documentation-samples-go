@@ -1,7 +1,9 @@
 package main
 
 import (
+	"crypto/tls"
 	"log"
+	"os"
 
 	"github.com/joho/godotenv"
 
@@ -12,14 +14,11 @@ import (
 )
 
 /*
-To run a Worker Process, define the following steps in code:
+A Temporal Cloud Worker requires that you specify the following in the Client connection options:
 
-- Initialize a Temporal Client.
-- Create a new Worker by passing the Client to creation call.
-- Register the application's Workflow and Activity functions.
-- Call run on the Worker.
-
-In regards to organization, we recommend keeping Worker code separate from Workflow and Activity code.
+- Temporal Cloud Address
+- Temporal Cloud Namespace
+- Certificate and private key associated with the Namespace
 */
 
 func main() {
@@ -27,14 +26,30 @@ func main() {
 	if err != nil {
 		log.Fatalln("Unable to load environment variables from file", err)
 	}
-	// Initialize a Temporal Client
-	// Specify the Namespace in the Client options
-	clientOptions := client.Options{
-		Namespace: "backgroundcheck_namespace",
-	}
-	temporalClient, err := client.Dial(clientOptions)
+	// Get the key and cert from your env or local machine
+	clientKeyPath := "./ca.key"
+	clientCertPath := "./ca.pem"
+	// Use the crypto/tls package to create a cert object
+	cert, err := tls.LoadX509KeyPair(clientCertPath, clientKeyPath)
 	if err != nil {
-		log.Fatalln("Unable to create a Temporal Client", err)
+		log.Fatalln("Unable to load cert and key pair.", err)
+	}
+	// Specify the host and port of your Temporal Cloud Namespace
+	// Host and port format: namespace.unique_id.tmprl.cloud:port
+	namespace := os.Getenv("TEMPORAL_CLOUD_NAMESPACE")
+	port := os.Getenv("TEMPORAL_CLOUD_PORT")
+	hostPort := namespace + ".tmprl.cloud:" + port
+	// Create a new Temporal Client
+	// Specify Namespace, Hostport and tls certificates in the ConnectionOptions
+	temporalClient, err := client.Dial(client.Options{
+		HostPort:  hostPort,
+		Namespace: namespace,
+		ConnectionOptions: client.ConnectionOptions{
+			TLS: &tls.Config{Certificates: []tls.Certificate{cert}},
+		},
+	})
+	if err != nil {
+		log.Fatalln("Unable to connect to Temporal Cloud.", err)
 	}
 	defer temporalClient.Close()
 	// Create a new Worker
@@ -50,14 +65,26 @@ func main() {
 	}
 }
 
+/*
+When specifying the Temporal Cloud Namespace, make sure to append the Account Id as it appears in the url of the Cloud UI.
+Consider the following Namespace url: https://cloud.temporal.io/namespaces/backgroundcheck-app.1a23b/workflows, if your Namespace is "backgroundcheck-app" and your Account Id is "1a23b", then you would specify your Namespace as "backgroundcheck-app.1a23b".
+
+The Temporal Cloud gRPC connection address includes your [Namesapce](/concepts/what-is-a-namespace) and a port number: `<Namespace>.<AccountId>.tmprl.cloud:<port>`.
+For example: `https://backgroundcheck-app.1a23b.tmprl.cloud:1234`.
+There is an option to copy the grPC endpoint address from the Temporal Cloud UI.
+
+![Copy your gRPC endpoint from the UI](/img/copy-grpc-endpoint.png)
+*/
+
 /* @dacx
 id: backgroundcheck-boilerplate-cloud-worker
-title: Run a dev server Worker
-description: Define the code needed to run a Worker Process in Go.
+title: Run a Temporal Cloud Worker
+description: Provide your Namespace, Address, and certificate key pair to connect to Temporal Cloud.
 label: Dev server Worker
-lines: 1-51
+lines: 16-24, 30-50, 66-77
 tags:
 - worker
+- temporal cloud
 - developer guide
 - temporal client
 @dacx */
