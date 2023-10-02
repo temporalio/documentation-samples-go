@@ -16,8 +16,8 @@ import (
 /*
 A Temporal Cloud Worker requires that you specify the following in the Client connection options:
 
-- Temporal Cloud Address
 - Temporal Cloud Namespace
+- Temporal Cloud Address
 - Certificate and private key associated with the Namespace
 */
 
