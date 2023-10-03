@@ -5,12 +5,6 @@ WORKDIR /app
 COPY . .
 
 RUN go get
-RUN go build -o bin ./self_hosted/main_dacx.go
+RUN go build -o bin ./self_hosted_worker/main_dacx.go
 
 ENTRYPOINT ["/app/bin"]
-
-# Runtime Stage
-# FROM alpine:latest
-# WORKDIR /app
-# COPY --from=builder /src/worker ./
-# CMD ["./worker"]

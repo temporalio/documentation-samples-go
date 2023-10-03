@@ -10,7 +10,8 @@ import (
 	"go.temporal.io/sdk/client"
 	"go.temporal.io/sdk/worker"
 
-	"documentation-samples-go/backgroundcheck_boilerplate"
+	"documentation-samples-go/backgroundcheck_boilerplate/activities"
+	"documentation-samples-go/backgroundcheck_boilerplate/workflows"
 )
 
 /*
@@ -55,9 +56,9 @@ func main() {
 	// Create a new Worker
 	yourWorker := worker.New(temporalClient, "backgroundcheck-boilerplate-task-queue-cloud", worker.Options{})
 	// Register Workflows
-	yourWorker.RegisterWorkflow(backgroundcheck_boilerplate.BackgroundCheck)
+	yourWorker.RegisterWorkflow(workflows.BackgroundCheck)
 	// Register Acivities
-	yourWorker.RegisterActivity(backgroundcheck_boilerplate.SSNTraceActivity)
+	yourWorker.RegisterActivity(activities.SSNTraceActivity)
 	// Start the the Worker Process
 	err = yourWorker.Run(worker.InterruptCh())
 	if err != nil {
@@ -81,7 +82,7 @@ id: backgroundcheck-boilerplate-cloud-worker
 title: Run a Temporal Cloud Worker
 description: Provide your Namespace, Address, and certificate key pair to connect to Temporal Cloud.
 label: Cloud Worker
-lines: 1-66
+lines: 1-67
 tags:
 - worker
 - temporal cloud
@@ -94,7 +95,7 @@ id: backgroundcheck-boilerplate-cloud-worker-details
 title: Cloud Worker details
 description: When specifying the Temporal Cloud Namespace, make sure to append the Account Id as it appears in the url of the Cloud UI.
 label: Cloud Worker details
-lines: 68-77
+lines: 69-78
 tags:
 - worker
 - cloud certificate

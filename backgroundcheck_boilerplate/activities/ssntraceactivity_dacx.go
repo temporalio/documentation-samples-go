@@ -1,4 +1,4 @@
-package backgroundcheck_boilerplate
+package activities
 
 import (
 	"context"

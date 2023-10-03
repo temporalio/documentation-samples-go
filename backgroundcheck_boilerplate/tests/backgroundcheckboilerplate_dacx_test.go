@@ -6,6 +6,9 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 	"go.temporal.io/sdk/testsuite"
+
+	"documentation-samples-go/backgroundcheck_boilerplate/activities"
+	"documentation-samples-go/backgroundcheck_boilerplate/workflows"
 )
 
 /*
@@ -55,9 +58,9 @@ func (s *UnitTestSuite) Test_BackgroundCheckWorkflow() {
 	env := s.NewTestWorkflowEnvironment()
 	// Mock the Activity Execution for the Workflow
 	ssnTraceResult := "pass"
-	env.OnActivity(SSNTraceActivity, mock.Anything, ssn).Return(&ssnTraceResult, nil)
+	env.OnActivity(activities.SSNTraceActivity, mock.Anything, ssn).Return(&ssnTraceResult, nil)
 	// Run the Workflow in the test environment
-	env.ExecuteWorkflow(BackgroundCheck, ssn)
+	env.ExecuteWorkflow(workflows.BackgroundCheck, ssn)
 	// Check that the Workflow reach a completed status
 	s.True(env.IsWorkflowCompleted())
 	// Check whether the Workflow returned an error
@@ -94,9 +97,9 @@ func (s *UnitTestSuite) Test_SSNTraceActivity() {
 	// Create a test environment
 	env := s.NewTestActivityEnvironment()
 	// Register Activity with the enviroment
-	env.RegisterActivity(SSNTraceActivity)
+	env.RegisterActivity(activities.SSNTraceActivity)
 	// Run the Activity in the test enviroment
-	future, err := env.ExecuteActivity(SSNTraceActivity, ssn)
+	future, err := env.ExecuteActivity(activities.SSNTraceActivity, ssn)
 	// Check there was no error on the call to execute the Activity
 	s.NoError(err)
 	// Check  that there was no error returned from the Activity
@@ -111,7 +114,7 @@ id: backgroundcheck-boilerplate-add-test-framework
 title: Add a testing framework
 description: How to add a testing framework to your Temporal Application.
 label: Test framework
-lines: 1-24, 31-35
+lines: 1-27, 34-38
 tags:
 - testing
 - developer guide
@@ -124,7 +127,7 @@ id: backgroundcheck-boilerplate-add-test-framework-details
 title: Add a testing framework details
 description: How to add a testing framework to your Temporal Application.
 label: Test framework details
-lines: 26-29
+lines: 29-32
 tags:
 - testing
 - developer guide
@@ -141,7 +144,7 @@ tags:
 - testing
 - developer guide
 - go sdk
-lines: 37-70
+lines: 40-73
 @dacx */
 
 /* @dacx
@@ -153,7 +156,7 @@ tags:
 - testing
 - developer guide
 - go sdk
-lines: 72-82
+lines: 75-85
 @dacx */
 
 /* @dacx
@@ -161,7 +164,7 @@ id: backgroundcheck-boilerplate-add-activity-tests
 title: Add Activity function tests
 description: How to test Activity code
 label: Test Activity code
-lines: 84-107
+lines: 87-110
 tags:
 - testing
 - developer guide

@@ -1,9 +1,11 @@
-package backgroundcheck_boilerplate
+package workflows
 
 import (
 	"time"
 
 	"go.temporal.io/sdk/workflow"
+
+	"documentation-samples-go/backgroundcheck_boilerplate/activities"
 )
 
 /*
@@ -21,7 +23,7 @@ func BackgroundCheck(ctx workflow.Context, param string) (string, error) {
 	ctx = workflow.WithActivityOptions(ctx, activityOptions)
 	// Execute the Activity synchronously (wait for the result before proceeding)
 	var ssnTraceResult string
-	err := workflow.ExecuteActivity(ctx, SSNTraceActivity, param).Get(ctx, &ssnTraceResult)
+	err := workflow.ExecuteActivity(ctx, activities.SSNTraceActivity, param).Get(ctx, &ssnTraceResult)
 	if err != nil {
 		return "", err
 	}
@@ -62,7 +64,7 @@ tags:
 - developer guide
 - workflow
 - code sample
-lines: 1-30
+lines: 1-32
 @dacx */
 
 /* @dacx
@@ -74,5 +76,5 @@ tags:
 - go sdk
 - workflow
 - developer guide
-lines: 32-53
+lines: 34-55
 @dacx */
