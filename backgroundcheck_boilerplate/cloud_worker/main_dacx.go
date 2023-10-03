@@ -81,7 +81,7 @@ id: backgroundcheck-boilerplate-cloud-worker
 title: Run a Temporal Cloud Worker
 description: Provide your Namespace, Address, and certificate key pair to connect to Temporal Cloud.
 label: Cloud Worker
-lines: 16-22, 24, 30-50, 66
+lines: 1-66
 tags:
 - worker
 - temporal cloud
