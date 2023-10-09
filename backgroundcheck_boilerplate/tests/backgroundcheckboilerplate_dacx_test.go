@@ -42,7 +42,7 @@ We can test Workflow code for the following conditions:
 
 - Workflow status. For example, did the Workflow reach a completed status?
 - Workflow returned an error. Did the Workflow function return an error?
-- Error when checking for a result of a Workflow. Is there an error in getting the result returned by the Workflow.
+- Error when checking for a result of a Workflow. Is there an error in getting the result returned by the Workflow?
 - Workflow return value. If the Workflow did return something other than an error, is it what you expected it to be?
 
 We can also perform a Workflow Replay test, and we'll provide detailed coverage of this topic in another section.
@@ -102,7 +102,7 @@ func (s *UnitTestSuite) Test_SSNTraceActivity() {
 	future, err := env.ExecuteActivity(activities.SSNTraceActivity, ssn)
 	// Check there was no error on the call to execute the Activity
 	s.NoError(err)
-	// Check  that there was no error returned from the Activity
+	// Check that there was no error returned from the Activity
 	var result string
 	s.NoError(future.Get(&result))
 	// Check for the expected return value.
