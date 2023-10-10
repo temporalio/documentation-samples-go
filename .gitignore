@@ -16,3 +16,8 @@
 
 # Local secrets to connect to Cloud
 cloud/secrets
+ca.key
+ca.pem
+
+# Environment variable files
+.env
