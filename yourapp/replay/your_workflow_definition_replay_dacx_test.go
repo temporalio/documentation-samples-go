@@ -73,6 +73,21 @@ You can replay many Event Histories by registering all the needed Workflow imple
 */
 
 /* @dacx
+id: how-to-test-workflow-event-history-in-go
+title: How to test Workflow Event History in Go
+label: Testing Workflow Event History
+description: Retrieve your Event History and run tests on the JSON output to safely update your Workflows without non-deterministic errors.
+tags:
+  - go sdk
+  - developer-guide-doc-type
+  - testing
+  - workflow execution
+  - event history
+  - replay
+lines: 1-30
+@dacx */
+
+/* @dacx
 id: how-to-replay-a-workflow-execution-in-go
 title: How to replay a Workflow Execution in Go
 label: Workflow Replay
@@ -84,5 +99,5 @@ tags:
   - workflow execution
   - event history
   - replay
-lines: 1-13, 15-73,
+lines: 32-73
 @dacx */
