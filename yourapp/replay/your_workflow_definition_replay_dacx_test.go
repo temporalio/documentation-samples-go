@@ -12,14 +12,6 @@ import (
 	"go.temporal.io/sdk/worker"
 )
 
-/*
-TestReplayWorkflowHistoryFromFile tests the code against the existing Worklow History saved to the JSON file.
-This Replay test is the recommended way to make sure changing workflow code is backward compatible without non-deterministic errors.
-"your_workflow_history.json" can be downloaded from the Web UI or the Temporal CLI:
-
-	`temporal workflow show --workflow-id your-workflow-id --output json  > your_workflow_history.json`
-*/
-
 func TestReplayWorkflowHistoryFromFile(t *testing.T) {
 	replayer := worker.NewWorkflowReplayer()
 
@@ -28,6 +20,14 @@ func TestReplayWorkflowHistoryFromFile(t *testing.T) {
 	err := replayer.ReplayWorkflowHistoryFromJSONFile(nil, "your_workflow_history.json")
 	require.NoError(t, err)
 }
+
+/*
+TestReplayWorkflowHistoryFromFile tests the code against the existing Worklow History saved to the JSON file.
+This Replay test is the recommended way to make sure changing workflow code is backward compatible without non-deterministic errors.
+"your_workflow_history.json" can be downloaded from the Web UI or the Temporal CLI:
+
+	`temporal workflow show --workflow-id your-workflow-id --output json  > your_workflow_history.json`
+*/
 
 /*
 Use the [worker.WorkflowReplayer](https://pkg.go.dev/go.temporal.io/sdk/worker#WorkflowReplayer) to replay an existing Workflow Execution from its Event History to replicate errors.
@@ -84,20 +84,5 @@ tags:
   - workflow execution
   - event history
   - replay
-lines: 1-30
-@dacx */
-
-/* @dacx
-id: how-to-replay-a-workflow-execution-in-go
-title: How to replay a Workflow Execution in Go
-label: Workflow Replay
-description: Use the `WorkflowReplayer` API to replay an existing Workflow Execution from an Event History to replicate errors.
-tags:
-  - go sdk
-  - developer-guide-doc-type
-  - testing
-  - workflow execution
-  - event history
-  - replay
-lines: 32-73
+lines: 15-30
 @dacx */
