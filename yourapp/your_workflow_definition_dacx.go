@@ -71,7 +71,7 @@ func YourWorkflowDefinition(ctx workflow.Context, param YourWorkflowParam) (*You
 	// Use a nil struct pointer to call Activities that are part of a struct.
 	var a *YourActivityObject
 	// Execute the Activity and wait for the result.
-	var activityResult *YourActivityResultObject
+	var activityResult YourActivityResultObject
 	/*
 	   	The Activity function name can be provided as a variable object (no quotations) or as a string.
 	       The benefit of passing the actual function object is that the framework can validate the parameters against the Activity Definition.
