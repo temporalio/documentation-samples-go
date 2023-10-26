@@ -72,7 +72,9 @@ func (s *UnitTestSuite) Test_SSNTraceActivity() {
 Add the Replay test to the set of application tests.
 The Replayer is available from the Worker package in the SDK.
 Register the Workflow Definition and then specify an existing Event History to compare to.
-If the two are incompatible then the test fails.
+
+Run the tests in the test directory (`go test`).
+If the Workflow Definition and the Event History are incompatible then the test fails.
 */
 
 // TestReplayWorkflowHistoryFromFile tests for Event History compatability.
