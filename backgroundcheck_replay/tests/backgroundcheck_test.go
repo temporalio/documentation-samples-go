@@ -68,6 +68,13 @@ func (s *UnitTestSuite) Test_SSNTraceActivity() {
 	s.Equal("pass", result)
 }
 
+/*
+Add the Replay test to the set of application tests.
+The Replayer is available from the Worker package in the SDK.
+Register the Workflow Definition and then specify an existing Event History to compare to.
+If the two are incompatible then the test fails.
+*/
+
 // TestReplayWorkflowHistoryFromFile tests for Event History compatability.
 func (s *UnitTestSuite) TestReplayWorkflowHistoryFromFile() {
 	// Create a new Replayer
@@ -78,3 +85,15 @@ func (s *UnitTestSuite) TestReplayWorkflowHistoryFromFile() {
 	err := replayer.ReplayWorkflowHistoryFromJSONFile(nil, "backgroundcheck_workflow_event_history.json")
 	s.NoError(err)
 }
+
+/* @dacx
+id: add-replay-test-to-background-check-workflow
+title: Add a Replay test
+description: Define the code needed to run a Worker Process in Go.
+label: Add Replay test
+lines: 71-87
+tags:
+- testing
+- replay test
+- replayer
+@dacx */
