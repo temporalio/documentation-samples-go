@@ -46,7 +46,7 @@ func main() {
 	}
 	defer temporalClient.Close()
 	// Create a new Worker
-	yourWorker := worker.New(temporalClient, "backgroundcheck-boilerplate-task-queue-cloud", worker.Options{})
+	yourWorker := worker.New(temporalClient, "backgroundcheck-replay-task-queue-cloud", worker.Options{})
 	// Register Workflows
 	yourWorker.RegisterWorkflow(workflows.BackgroundCheck)
 	// Register Acivities
