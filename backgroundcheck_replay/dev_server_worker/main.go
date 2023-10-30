@@ -25,6 +25,7 @@ func main() {
 	yourWorker := worker.New(temporalClient, "backgroundcheck-replay-task-queue-local", worker.Options{})
 	// Register Workflows
 	yourWorker.RegisterWorkflow(workflows.BackgroundCheck)
+	yourWorker.RegisterWorkflow(workflows.BackgroundCheckNonDeterministic)
 	// Register Acivities
 	yourWorker.RegisterActivity(activities.SSNTraceActivity)
 	// Start the the Worker Process
