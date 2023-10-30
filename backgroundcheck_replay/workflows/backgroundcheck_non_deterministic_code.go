@@ -108,76 +108,11 @@ Progress:
                                                         go.temporal.io/sdk/internal.(*coroutineState).call(0x1400061a780, 0x3b9aca00)
                                                                 /Users/flossypurse/go/pkg/mod/go.temporal.io/sdk@v1.25.1/internal/internal_workflow.go:1011
                                                         +0x170 go.te ... poral.io/sdk@v1.25.1/internal/internal_worker_base.go:356 +0x48
-                                                        created by go.temporal.io/sdk/internal.(*ba
-seWorker).processTaskAsync in goroutine 15
-                                                                /Users/flossypurse/go/pkg/mod/go.te
-mporal.io/sdk@v1.25.1/internal/internal_worker_base.go:352
-                                                        +0xbc, FailureInfo:{ApplicationFailureInfo:
-{Type:PanicError, NonRetryable:true}}},
-                                                        Identity:47041@flossypurse-macbook-pro.loca
-l@, ForkEventVersion:0,
-                                                        BinaryChecksum:48fa2bc5191e2e60e3f72a7a78d0
-e721}
-   5  2023-10-30T18:36:53Z  WorkflowTaskScheduled       {TaskQueue:{Name:backgroundcheck-replay-tas
-k-queue-local,
-                                                        Kind:Normal}, StartToCloseTimeout:44.592040
-926s,
-                                                        Attempt:7}
-
-   6  2023-10-30T18:36:53Z  WorkflowTaskStarted         {ScheduledEventId:5,
-
-                                                        Identity:47041@flossypurse-macbook-pro.loca
-l@,
-                                                        RequestId:77ddffa4-9a7f-48ae-94ba-f028a4ca8
-32e,
-                                                        SuggestContinueAsNew:false,
-
-                                                        HistorySizeBytes:3598}
-
-   7  2023-10-30T18:36:53Z  WorkflowTaskCompleted       {ScheduledEventId:5, StartedEventId:6,
-
-                                                        Identity:47041@flossypurse-macbook-pro.loca
-l@,
-                                                        BinaryChecksum:48fa2bc5191e2e60e3f72a7a78d0
-e721,
-                                                        SdkMetadata:{CoreUsedFlags:[], LangUsedFlag
-s:[3]},
-                                                        MeteringMetadata:{NonfirstLocalActivityExec
-utionAttempts:0}}
-   8  2023-10-30T18:36:53Z  ActivityTaskScheduled       {ActivityId:8, ActivityType:{Name:SSNTraceA
-ctivity},
-                                                        TaskQueue:{Name:backgroundcheck-replay-task
--queue-local,
-                                                        Kind:Normal}, Input:["555-55-5555"],
-
-                                                        ScheduleToCloseTimeout:0s, ScheduleToStartT
-imeout:0s,
-                                                        StartToCloseTimeout:10s, HeartbeatTimeout:0s,
-                                                        WorkflowTaskCompletedEventId:7,
-                                                        RetryPolicy:{InitialInterval:1s, BackoffCoefficient:2,
-                                                        MaximumInterval:1m40s, MaximumAttempts:0,
-                                                        NonRetryableErrorTypes:[]}}
-   9  2023-10-30T18:36:53Z  ActivityTaskStarted         {ScheduledEventId:8,
-                                                        Identity:47041@flossypurse-macbook-pro.local@,
-                                                        RequestId:7070c707-740e-4273-888b-6f67f65802b0,
-                                                        Attempt:1}
-  10  2023-10-30T18:36:53Z  ActivityTaskCompleted       {Result:["pass"],
-                                                        ScheduledEventId:8, StartedEventId:9,
-                                                        Identity:47041@flossypurse-macbook-pro.local@}
-  11  2023-10-30T18:36:53Z  WorkflowTaskScheduled       {TaskQueue:{Name:flossypurse-macbook-pro.local:2fe5b04b-e9d4-4d3a-9d05-933db7046c42,
-                                                        Kind:Sticky}, StartToCloseTimeout:10s, Attempt:1}
-  12  2023-10-30T18:36:53Z  WorkflowTaskStarted         {ScheduledEventId:11,
-                                                        Identity:47041@flossypurse-macbook-pro.local@,
-                                                        RequestId:712b0eb0-1611-43a6-91e7-c54c4fa21df8,
-                                                        SuggestContinueAsNew:false,
-                                                        HistorySizeBytes:4378}
-  13  2023-10-30T18:36:53Z  WorkflowTaskCompleted       {ScheduledEventId:11, StartedEventId:12,
-                                                        Identity:47041@flossypurse-macbook-pro.local@,
-                                                        BinaryChecksum:48fa2bc5191e2e60e3f72a7a78d0e721,
-                                                        SdkMetadata:{CoreUsedFlags:[], LangUsedFlags:[]},
-                                                        MeteringMetadata:{NonfirstLocalActivityExecutionAttempts:0}}
-  14  2023-10-30T18:36:53Z  WorkflowExecutionCompleted  {Result:["pass"],
-                                                        WorkflowTaskCompletedEventId:13}
+                                                        created by go.temporal.io/sdk/internal.(*baseWorker).processTaskAsync in goroutine 15
+                                                                /Users/flossypurse/go/pkg/mod/go.temporal.io/sdk@v1.25.1/internal/internal_worker_base.go:352
+                                                        +0xbc, FailureInfo:{ApplicationFailureInfo: {Type:PanicError, NonRetryable:true}}},
+                                                        Identity:47041@flossypurse-macbook-pro.local@, ForkEventVersion:0,
+                                                        BinaryChecksum:48fa2bc5191e2e60e3f72a7a78d0e721}
 ```
 */
 
@@ -198,7 +133,7 @@ id: backgroundcheck-replay-inspecting-the-non-deterministic-error
 title: Intrinsic non-deterministic logic
 description: This kind of logic prevents the Workflow code from executing to completion because the Workflow can take a different code path than the one expected from the Event History.
 label: intrinsic-non-deterministic-logic
-lines: 58-182
+lines: 58-117
 tags:
 - tests
 - replay
