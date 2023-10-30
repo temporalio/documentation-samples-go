@@ -217,7 +217,7 @@ utionAttempts:0}}
 */
 
 /* @dacx
-id: backgroundcheck_replay_intrinsic-non-determinism
+id: backgroundcheck-replay-intrinsic-non-determinism
 title: Intrinsic non-deterministic logic
 description: This kind of logic prevents the Workflow code from executing to completion because the Workflow can take a different code path than the one expected from the Event History.
 label: intrinsic-non-deterministic-logic
@@ -229,7 +229,7 @@ tags:
 @dacx */
 
 /* @dacx
-id: backgroundcheck_replay_inspecting-the-non-deterministic-error
+id: backgroundcheck-replay-inspecting-the-non-deterministic-error
 title: Intrinsic non-deterministic logic
 description: This kind of logic prevents the Workflow code from executing to completion because the Workflow can take a different code path than the one expected from the Event History.
 label: intrinsic-non-deterministic-logic
