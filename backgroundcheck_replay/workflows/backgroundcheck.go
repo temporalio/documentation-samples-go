@@ -37,7 +37,6 @@ func BackgroundCheck(ctx workflow.Context, param string) (string, error) {
 	ctx = workflow.WithActivityOptions(ctx, activityOptions)
 	// Execute the Activity synchronously (wait for the result before proceeding)
 	var ssnTraceResult string
-	// highlight-next-line
 	err = workflow.ExecuteActivity(ctx, activities.SSNTraceActivity, param).Get(ctx, &ssnTraceResult)
 	if err != nil {
 		return "", err
@@ -93,7 +92,7 @@ id: add-sleep-for-one-minute
 title: Add a call to sleep
 description: Add a call to sleep for one minute to the beginning of the Workflow.
 label: Add sleep call
-lines: 2-47
+lines: 2-46
 tags:
 - timer
 - sleep
@@ -105,7 +104,7 @@ id: inspect-the-new-event-history
 title: Inspect the new Event History
 description: After making changes to the code, we must update the Event History JSON file to get tests to pass.
 label: Inspect new Event History
-lines: 49-89
+lines: 48-88
 tags:
 - tests
 - replay
