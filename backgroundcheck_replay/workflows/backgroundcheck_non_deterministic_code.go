@@ -12,37 +12,27 @@ import (
 )
 
 /*
-Referred to as "intrinsic non-determinism" this kind of "bad Workflow code logic" can prevent the Workflow code from executing to completion because the Workflow can take a different code path than the one expected from the Event History.
+Referred to as "intrinsic non-determinism" this kind of "bad" Workflow code can prevent the Workflow code from completing because the Workflow can take a different code path than the one expected from the Event History.
 
 The following are some common operations that **can't** be done inside of a Wokflow Definition:
 
 - Generate and rely on random numbers (Use Activites instead).
-- Accessing / mutating external systems or state (use Activities instead).
-- Relying on system time (use Workflow.now() instead).
-- Working directly with threads or goroutines (use Workflow.go() instead).
+- Accessing / mutating external systems or state.
+  This includes calling an external API, conducting a file I/O operation, talking to another service, etc. (use Activities instead).
+- Relying on system time.
+  - Use `workflow.Now()` as a replacement for `time.Now()`.
+  - Use `workflow.Sleep()` as a replacement for `time.Sleep()`.
+- Working directly with threads or goroutines.
+	- Use `workflow.Go()` as a replacement for the `go` statement.
+    - Use `workflow.Channel()` as a replacement for the native `chan` type.
+	Temporal provides support for both buffered and unbuffered channels.
+	- Use `workflow.Selector()` as a replacement for the `select` statement.
 - Iterating over data structures with unknown ordering.
-- Storing or evaluating the run Id.
-
-In Go, Workflow Definition code cannot directly do the following:
-
-- Iterate over maps using `range`, because with `range` the order of the map's iteration is randomized.
+  This includes iterating over maps using `range`, because with `range` the order of the map's iteration is randomized.
   Instead you can collect the keys of the map, sort them, and then iterate over the sorted keys to access the map.
   This technique provides deterministic results.
   You can also use a Side Effect or an Activity to process the map instead.
-- Call an external API, conduct a file I/O operation, talk to another service, etc. (Use an Activity for these.)
-
-The Temporal Go SDK has APIs to handle equivalent Go constructs:
-
-- `workflow.Now()` This is a replacement for `time.Now()`.
-- `workflow.Sleep()` This is a replacement for `time.Sleep()`.
-- `workflow.GetLogger()` This ensures that the provided logger does not duplicate logs during a replay.
-- `workflow.Go()` This is a replacement for the `go` statement.
-- `workflow.Channel` This is a replacement for the native `chan` type.
-  Temporal provides support for both buffered and unbuffered channels.
-- `workflow.Selector` This is a replacement for the `select` statement.
-  Learn more on the [Go SDK Selectors](https://legacy-documentation-sdks.temporal.io/go/selectors) page.
-- `workflow.Context` This is a replacement for `context.Context`.
-  See [Tracing](/dev-guide/go/observability#tracing) for more information about context propagation.
+- Storing or evaluating the run Id.
 
 One way to produce a non-deterministic error is to sleep for a random amount of time inside the Workflow.
 */
@@ -162,56 +152,31 @@ ctivity},
 
                                                         ScheduleToCloseTimeout:0s, ScheduleToStartT
 imeout:0s,
-                                                        StartToCloseTimeout:10s, HeartbeatTimeout:0
-s,
+                                                        StartToCloseTimeout:10s, HeartbeatTimeout:0s,
                                                         WorkflowTaskCompletedEventId:7,
-
-                                                        RetryPolicy:{InitialInterval:1s, BackoffCoe
-fficient:2,
+                                                        RetryPolicy:{InitialInterval:1s, BackoffCoefficient:2,
                                                         MaximumInterval:1m40s, MaximumAttempts:0,
-
                                                         NonRetryableErrorTypes:[]}}
-
    9  2023-10-30T18:36:53Z  ActivityTaskStarted         {ScheduledEventId:8,
-
-                                                        Identity:47041@flossypurse-macbook-pro.loca
-l@,
-                                                        RequestId:7070c707-740e-4273-888b-6f67f6580
-2b0,
+                                                        Identity:47041@flossypurse-macbook-pro.local@,
+                                                        RequestId:7070c707-740e-4273-888b-6f67f65802b0,
                                                         Attempt:1}
-
   10  2023-10-30T18:36:53Z  ActivityTaskCompleted       {Result:["pass"],
-
                                                         ScheduledEventId:8, StartedEventId:9,
-
-                                                        Identity:47041@flossypurse-macbook-pro.loca
-l@}
-  11  2023-10-30T18:36:53Z  WorkflowTaskScheduled       {TaskQueue:{Name:flossypurse-macbook-pro.lo
-cal:2fe5b04b-e9d4-4d3a-9d05-933db7046c42,
-                                                        Kind:Sticky}, StartToCloseTimeout:10s, Atte
-mpt:1}
+                                                        Identity:47041@flossypurse-macbook-pro.local@}
+  11  2023-10-30T18:36:53Z  WorkflowTaskScheduled       {TaskQueue:{Name:flossypurse-macbook-pro.local:2fe5b04b-e9d4-4d3a-9d05-933db7046c42,
+                                                        Kind:Sticky}, StartToCloseTimeout:10s, Attempt:1}
   12  2023-10-30T18:36:53Z  WorkflowTaskStarted         {ScheduledEventId:11,
-
-                                                        Identity:47041@flossypurse-macbook-pro.loca
-l@,
-                                                        RequestId:712b0eb0-1611-43a6-91e7-c54c4fa21
-df8,
+                                                        Identity:47041@flossypurse-macbook-pro.local@,
+                                                        RequestId:712b0eb0-1611-43a6-91e7-c54c4fa21df8,
                                                         SuggestContinueAsNew:false,
-
                                                         HistorySizeBytes:4378}
-
   13  2023-10-30T18:36:53Z  WorkflowTaskCompleted       {ScheduledEventId:11, StartedEventId:12,
-
-                                                        Identity:47041@flossypurse-macbook-pro.loca
-l@,
-                                                        BinaryChecksum:48fa2bc5191e2e60e3f72a7a78d0
-e721,
-                                                        SdkMetadata:{CoreUsedFlags:[], LangUsedFlag
-s:[]},
-                                                        MeteringMetadata:{NonfirstLocalActivityExec
-utionAttempts:0}}
+                                                        Identity:47041@flossypurse-macbook-pro.local@,
+                                                        BinaryChecksum:48fa2bc5191e2e60e3f72a7a78d0e721,
+                                                        SdkMetadata:{CoreUsedFlags:[], LangUsedFlags:[]},
+                                                        MeteringMetadata:{NonfirstLocalActivityExecutionAttempts:0}}
   14  2023-10-30T18:36:53Z  WorkflowExecutionCompleted  {Result:["pass"],
-
                                                         WorkflowTaskCompletedEventId:13}
 ```
 */
@@ -221,7 +186,7 @@ id: backgroundcheck-replay-intrinsic-non-determinism
 title: Intrinsic non-deterministic logic
 description: This kind of logic prevents the Workflow code from executing to completion because the Workflow can take a different code path than the one expected from the Event History.
 label: intrinsic-non-deterministic-logic
-lines: 3-45
+lines: 3-56
 tags:
 - tests
 - replay
@@ -233,7 +198,7 @@ id: backgroundcheck-replay-inspecting-the-non-deterministic-error
 title: Intrinsic non-deterministic logic
 description: This kind of logic prevents the Workflow code from executing to completion because the Workflow can take a different code path than the one expected from the Event History.
 label: intrinsic-non-deterministic-logic
-lines: 3-45
+lines: 58-182
 tags:
 - tests
 - replay
