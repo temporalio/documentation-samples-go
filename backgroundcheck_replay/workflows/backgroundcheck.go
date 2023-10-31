@@ -82,9 +82,9 @@ Practially, that means non-deterministic changes include but are not limited to 
 
 The following are a few examples of changes that do not lead to non-deterministic errors:
 
-- Modifying non-Command generating statements in a Workflow Definition, such as logging statements.
-- Changing attributes in the `ActivityOptions`.
-- Modifying code inside of an Activity Definition.
+- Modifying non-Command generating statements in a Workflow Definition, such as logging statements
+- Changing attributes in the `ActivityOptions`
+- Modifying code inside of an Activity Definition
 */
 
 /* @dacx
