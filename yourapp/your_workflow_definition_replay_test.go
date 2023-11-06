@@ -26,11 +26,9 @@ package yourapp
 // 	require.NoError(t, err)
 // }
 
-
 // Use the [worker.WorkflowReplayer](https://pkg.go.dev/go.temporal.io/sdk/worker#WorkflowReplayer) to replay an existing Workflow Execution from its Event History to replicate errors.
 
 // For example, the following code retrieves the Event History of a Workflow:
-
 
 // func GetWorkflowHistory(ctx context.Context, client client.Client, id, runID string) (*history.History, error) {
 // 	var hist history.History
@@ -75,12 +73,9 @@ package yourapp
 
 // You can replay many Event Histories by registering all the needed Workflow implementation and then calling `ReplayWorkflowHistory` repeatedly.
 
-
 // id: how-to-replay-a-workflow-execution-in-go
 // title: How to replay a Workflow Execution in Go
 // sidebar_label: WorkflowReplayer
 // description: Use the `WorkflowReplayer` API to replay an existing Workflow Execution from an Event History to replicate errors.
 // tags: go sdk, code sample, workflow, replay
 // ---
-
-
