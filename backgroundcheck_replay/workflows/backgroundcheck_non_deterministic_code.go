@@ -14,7 +14,7 @@ import (
 /*
 Referred to as "intrinsic non-determinism" this kind of "bad" Workflow code can prevent the Workflow code from completing because the Workflow can take a different code path than the one expected from the Event History.
 
-The following are some common operations that **can't** be done inside of a Wokflow Definition:
+The following are some common operations that **can't** be done inside of a Workflow Definition:
 
 - Generate and rely on random numbers (Use Activites instead).
 - Accessing / mutating external systems or state.
