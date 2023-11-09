@@ -16,7 +16,7 @@ Referred to as "intrinsic non-determinism" this kind of "bad" Workflow code can 
 
 The following are some common operations that **can't** be done inside of a Workflow Definition:
 
-- Generate and rely on random numbers (Use Activites instead).
+- Generate and rely on random numbers (Use Activities instead).
 - Accessing / mutating external systems or state.
   This includes calling an external API, conducting a file I/O operation, talking to another service, etc. (use Activities instead).
 - Relying on system time.
