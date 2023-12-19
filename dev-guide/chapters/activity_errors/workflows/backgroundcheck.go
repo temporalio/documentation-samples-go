@@ -7,19 +7,13 @@ import (
 	"go.temporal.io/sdk/workflow"
 
 	"documentation-samples-go/dev-guide/chapters/activity_errors/activities"
+	"documentation-samples-go/dev-guide/chapters/activity_errors/common"
 )
-
-type PII struct {
-	FirstName        string
-	LastName         string
-	SSN              string
-	CreditCardNumber string
-}
 
 var a *activities.Activities
 
 // BackgroundCheck is your custom Workflow Definition.
-func BackgroundCheck(ctx workflow.Context, param PII) (string, error) {
+func BackgroundCheck(ctx workflow.Context, param common.PII) (string, error) {
 
 	logger := workflow.GetLogger(ctx)
 	logger.Info("BackgroundCheck workflow started.", "Name", param.FirstName, param.LastName)
@@ -33,7 +27,7 @@ func BackgroundCheck(ctx workflow.Context, param PII) (string, error) {
 
 	// Charge the credit card
 	var chargeResult string
-	err := workflow.ExecuteActivity(standardCtx, a.ChargeActivity, param).Get(ctx, &chargeResult)
+	err := workflow.ExecuteActivity(standardCtx, a.ChargeCreditCardActivity, param).Get(ctx, &chargeResult)
 	if err != nil {
 		return "", err
 	}
@@ -66,7 +60,7 @@ func BackgroundCheck(ctx workflow.Context, param PII) (string, error) {
 	return "pass", nil
 }
 
-func refund(ctx workflow.Context, param PII) error {
+func refund(ctx workflow.Context, param common.PII) error {
 	// Refund the credit card
 	var refundResult string
 	err := workflow.ExecuteActivity(ctx, a.RefundCreditCardActivity, param).Get(ctx, &refundResult)

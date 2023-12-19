@@ -8,6 +8,8 @@ import (
 	"net/http"
 
 	"go.temporal.io/sdk/activity"
+
+	"documentation-samples-go/dev-guide/chapters/activity_errors/common"
 )
 
 type Activities struct{}
@@ -57,14 +59,14 @@ To get this Activity to succeed, we will need to fix the bug and restart the Wor
 */
 
 // SSNTraceActivity is your custom Activity Definition
-func (a *Activities) SSNTraceActivity(ctx context.Context, param PII) (*string, error) {
+func (a *Activities) SSNTraceActivity(ctx context.Context, param common.PII) (*string, error) {
 	var result string
 	logger := activity.GetLogger(ctx)
 	// highlight-start
 	// To simulate an application level error, we will get the eleventh character of the SSN
 	// But we will "accidentally" specify 11 as the index in the array, instead of 10
 	// Remove this logic to "fix the bug" restart the Worker
-	char := param[11]
+	char := param.SSN[11]
 	logger.Info("Eleventh char of the social security number", char)
 	// highlight-end
 	// Set the API endpoint
@@ -119,7 +121,7 @@ func (a *Activities) SSNTraceActivity(ctx context.Context, param PII) (*string, 
 Developers are still responsible for handling application level errors.
 */
 
-func (a *Activities) FederalCriminalSearchActivity(ctx context.Context, param PII) (*string, error) {
+func (a *Activities) FederalCriminalSearchActivity(ctx context.Context, param common.PII) (*string, error) {
 	var result string
 	logger := activity.GetLogger(ctx)
 	url := "https://iq.temporal.io/api/background-check/up-federal-criminal-search"
@@ -172,7 +174,7 @@ func (a *Activities) FederalCriminalSearchActivity(ctx context.Context, param PI
 	return &result, nil
 }
 
-func (a *Activities) ChargeCreditCardActivity(ctx context.Context, param PII) (*string, error) {
+func (a *Activities) ChargeCreditCardActivity(ctx context.Context, param common.PII) (*string, error) {
 	var result string
 	logger := activity.GetLogger(ctx)
 	url := "https://iq.temporal.io/api/background-check/charge-credit-card"
@@ -225,7 +227,7 @@ func (a *Activities) ChargeCreditCardActivity(ctx context.Context, param PII) (*
 	return &result, nil
 }
 
-func (a *Activities) RefundCreditCardActivity(ctx context.Context, param PII) (*string, error) {
+func (a *Activities) RefundCreditCardActivity(ctx context.Context, param common.PII) (*string, error) {
 	var result string
 	logger := activity.GetLogger(ctx)
 	url := "https://iq.temporal.io/api/background-check/refund-credit-card"
