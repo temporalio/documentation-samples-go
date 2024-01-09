@@ -1,4 +1,6 @@
-# Deprecated
+# Docs sample repo
+
+**Warning - deprecated**
 
 This repository is now deprecated.
 
