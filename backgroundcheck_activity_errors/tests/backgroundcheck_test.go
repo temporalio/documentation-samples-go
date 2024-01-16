@@ -1,5 +1,4 @@
-// dacx
-package backgroundcheck_replay
+package backgroundcheck_activity_errors
 
 import (
 	"testing"
@@ -9,8 +8,8 @@ import (
 	"go.temporal.io/sdk/testsuite"
 	"go.temporal.io/sdk/worker"
 
-	"documentation-samples-go/backgroundcheck_replay/activities"
-	"documentation-samples-go/backgroundcheck_replay/workflows"
+	"documentation-samples-go/backgroundcheck_activity_errors/activities"
+	"documentation-samples-go/backgroundcheck_activity_errors/workflows"
 )
 
 // UnitTestSuite is a struct that wraps around the testing suites
@@ -68,15 +67,6 @@ func (s *UnitTestSuite) Test_SSNTraceActivity() {
 	s.Equal("pass", result)
 }
 
-/*
-Add the Replay test to the set of application tests.
-The Replayer is available from the `go.temporal.io/sdk/worker` package in the SDK.
-Register the Workflow Definition and then specify an existing Event History to compare to.
-
-Run the tests in the test directory (`go test`).
-If the Workflow Definition and the Event History are incompatible then the test fails.
-*/
-
 // TestReplayWorkflowHistoryFromFile tests for Event History compatability.
 func (s *UnitTestSuite) TestReplayWorkflowHistoryFromFile() {
 	// Create a new Replayer
@@ -84,19 +74,6 @@ func (s *UnitTestSuite) TestReplayWorkflowHistoryFromFile() {
 	// Register the Workflow with the Replayer
 	replayer.RegisterWorkflow(workflows.BackgroundCheck)
 	// Compare the current Workflow code against the existing Event History
-	// This call fails unless updated to use 'backgroundcheck_workflow_event_history_with_timer.json'
-	err := replayer.ReplayWorkflowHistoryFromJSONFile(nil, "backgroundcheck_workflow_event_history.json")
+	err := replayer.ReplayWorkflowHistoryFromJSONFile(nil, "backgroundcheck_workflow_event_history_with_timer.json")
 	s.NoError(err)
 }
-
-/* @dacx
-id: add-replay-test-to-background-check-workflow
-title: Add a Replay test
-description: Define the code needed to run a Worker Process in Go.
-label: Add Replay test
-lines: 71-90
-tags:
-- testing
-- replay test
-- replayer
-@dacx */
