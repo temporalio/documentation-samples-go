@@ -55,9 +55,9 @@ func (s *UnitTestSuite) Test_BackgroundCheckWorkflow() {
 func (s *UnitTestSuite) Test_SSNTraceActivity() {
 	// Create a test environment
 	env := s.NewTestActivityEnvironment()
-	// Register Activity with the enviroment
+	// Register Activity with the environment
 	env.RegisterActivity(activities.SSNTraceActivity)
-	// Run the Activity in the test enviroment
+	// Run the Activity in the test environment
 	future, err := env.ExecuteActivity(activities.SSNTraceActivity, ssn)
 	// Check there was no error on the call to execute the Activity
 	s.NoError(err)
@@ -77,14 +77,14 @@ Run the tests in the test directory (`go test`).
 If the Workflow Definition and the Event History are incompatible then the test fails.
 */
 
-// TestReplayWorkflowHistoryFromFile tests for Event History compatability.
+// TestReplayWorkflowHistoryFromFile tests for Event History compatibility.
 func (s *UnitTestSuite) TestReplayWorkflowHistoryFromFile() {
 	// Create a new Replayer
 	replayer := worker.NewWorkflowReplayer()
 	// Register the Workflow with the Replayer
 	replayer.RegisterWorkflow(workflows.BackgroundCheck)
 	// Compare the current Workflow code against the existing Event History
-	err := replayer.ReplayWorkflowHistoryFromJSONFile(nil, "backgroundcheck_workflow_event_history.json")
+	err := replayer.ReplayWorkflowHistoryFromJSONFile(nil, "backgroundcheck_workflow_history.json")
 	s.NoError(err)
 }
 
